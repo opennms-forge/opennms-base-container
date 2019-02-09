@@ -44,7 +44,11 @@ jobs:
   net-snmp:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/net-snmp
-
+  
+  isc-dhcp:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/isc-dhcp
+  
   openjdk:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/openjdk
@@ -77,6 +81,9 @@ workflows:
           requires:
             - shellcheck
       - net-snmp:
+          requires:
+            - shellcheck
+      - isc-dhcp:
           requires:
             - shellcheck
       - openjdk:
