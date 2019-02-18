@@ -5,6 +5,9 @@ set -x
 # shellcheck source=projects/openjdk/config.sh
 source ./config.sh
 
+# shellcheck source=projects/registry-config.sh
+source ../registry-config.sh
+
 docker build -t "${CONTAINER_PROJECT}:${IMAGE_VERSION}" \
   --build-arg BASE_IMAGE="${BASE_IMAGE}" \
   --build-arg BASE_IMAGE_VERSION="${BASE_IMAGE_VERSION}" \

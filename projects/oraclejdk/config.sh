@@ -1,6 +1,5 @@
 #!/bin/bash -e
 
-
 # shellcheck disable=SC2034
 
 # Base Image Dependency
@@ -15,13 +14,3 @@ JDK_RPM_URL="https://download.oracle.com/otn-pub/java/jdk/${JDK_VERSION}-${JDK_B
 VERSION="${JDK_VERSION}-${JDK_BUILD_NUMBER}"
 BUILD_NUMBER="b1"
 IMAGE_VERSION="${VERSION}-${BUILD_NUMBER}"
-
-# Container registry and tags
-CONTAINER_PROJECT="$(basename "$(pwd)")"
-CONTAINER_REGISTRY="docker.io"
-CONTAINER_REGISTRY_REPO="opennms"
-CONTAINER_VERSION_TAGS=("${IMAGE_VERSION}"
-                        "latest")
-
-# Container Image Artifact
-CONTAINER_IMAGE="images/image.oci"

@@ -15,13 +15,3 @@ IMAGE_VERSION="${VERSION}-${BUILD_NUMBER}"
 MAVEN_URL="https://www-eu.apache.org"
 MAVEN_PKG="${MAVEN_URL}/dist/maven/maven-3/${VERSION}/binaries/apache-maven-${VERSION}-bin.tar.gz"
 MAVEN_HOME="/opt/apache-maven-${VERSION}"
-
-# Container registry and tags
-CONTAINER_PROJECT="$(basename "$(pwd)")"
-CONTAINER_REGISTRY="docker.io"
-CONTAINER_REGISTRY_REPO="opennms"
-CONTAINER_VERSION_TAGS=("${IMAGE_VERSION}"
-                        "latest")
-
-# Container Image Artifact
-CONTAINER_IMAGE="images/image.oci"
