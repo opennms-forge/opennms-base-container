@@ -4,12 +4,12 @@
 
 # Base Image Dependency
 BASE_IMAGE="opennms/openjdk"
-BASE_IMAGE_VERSION="1.8.0.191.b12-b2"
+BASE_IMAGE_VERSION="1.8.0.191.b12-b3"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
 # Version information
 VERSION="3.6.0"
-BUILD_NUMBER="b2"
+BUILD_NUMBER="b3"
 IMAGE_VERSION="${VERSION}-${BUILD_NUMBER}"
 
 MAVEN_URL="https://www-eu.apache.org"

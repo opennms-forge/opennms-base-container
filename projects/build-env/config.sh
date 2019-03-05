@@ -4,12 +4,12 @@
 
 # Base Image Dependency
 BASE_IMAGE="opennms/maven"
-BASE_IMAGE_VERSION="3.6.0-b2"
+BASE_IMAGE_VERSION="3.6.0-b3"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
 # Version information
 VERSION="1.0"
-BUILD_NUMBER="b2"
+BUILD_NUMBER="b3"
 
 REPO_RELEASE="develop"
 REPO_HOST="yum.opennms.org"
