@@ -9,9 +9,9 @@ BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
 # Version information
 VERSION="1.0"
-BUILD_NUMBER="b3"
+BUILD_NUMBER="b4"
 
-REPO_RELEASE="develop"
+REPO_RELEASE="stable"
 REPO_HOST="yum.opennms.org"
 REPO_URL="https://${REPO_HOST}/${REPO_RELEASE}/common/opennms"
 REPO_KEY_URL="https://${REPO_HOST}/OPENNMS-GPG-KEY"
@@ -23,7 +23,8 @@ REPO_RPM="https://${REPO_HOST}/repofiles/opennms-repo-${REPO_RELEASE}-rhel7.noar
 
 PACKAGES="gettext \
           wget \
-          git \
+          git-core \
+          openssh-clients \
           which \
           expect \
           make \
