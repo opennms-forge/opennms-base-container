@@ -7,7 +7,8 @@ ARG VERSION="2.8.3"
 ARG BUILD_DATE="1970-01-01T00:00:00+0000"
 
 # Install repositories, system and OpenNMS packages and do some cleanup
-RUN npm install netlify-cli -g
+RUN apk add --no-cache ca-certificates && \
+    npm install netlify-cli -g
 
 LABEL maintainer="The OpenNMS Group" \
       license="AGPLv3" \
