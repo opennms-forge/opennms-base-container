@@ -57,6 +57,10 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/maven
 
+  netlify-cli:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/netlify-cli
+
   build-env:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/build-env
@@ -90,6 +94,9 @@ workflows:
           requires:
             - shellcheck
             - openjdk
+      - netlify-cli:
+          requires:
+            - shellcheck
       - build-env:
           requires:
             - shellcheck
