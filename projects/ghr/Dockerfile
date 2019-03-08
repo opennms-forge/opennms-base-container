@@ -7,7 +7,8 @@ ARG VERSION="0.12.0"
 ARG BUILD_DATE="1970-01-01T00:00:00+0000"
 ARG GHR_RELEASE_URL="https://github.com/tcnksm/ghr/releases/download/v${VERSION}/ghr_v${VERSION}_linux_amd64.tar.gz"
 
-RUN wget ${GHR_RELEASE_URL} -O /tmp/ghr.tar.gz && \
+RUN apk add --no-cache ca-certificates && \
+    wget ${GHR_RELEASE_URL} -O /tmp/ghr.tar.gz && \
     tar --strip 1 -xzf /tmp/ghr.tar.gz ghr_v${VERSION}_linux_amd64/ghr -C /usr/local/bin && \
     rm -rf /tmp/ghr.tar.gz
     
