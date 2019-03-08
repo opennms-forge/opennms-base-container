@@ -6,7 +6,6 @@ FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 ARG VERSION="4.0.0"
 ARG BUILD_DATE="1970-01-01T00:00:00+0000"
 
-# Install repositories, system and OpenNMS packages and do some cleanup
 RUN apt-get update && \
     apt-get install -y git-core openssh-client && \
     rm -rf /var/lib/apt/lists/* && \

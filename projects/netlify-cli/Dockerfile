@@ -6,7 +6,6 @@ FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 ARG VERSION="2.8.3"
 ARG BUILD_DATE="1970-01-01T00:00:00+0000"
 
-# Install repositories, system and OpenNMS packages and do some cleanup
 RUN apk add --no-cache ca-certificates && \
     npm install netlify-cli -g
 

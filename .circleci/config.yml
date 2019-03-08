@@ -65,6 +65,10 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/package-cloud-cli
 
+  ghr:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/ghr
+
   gulp:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/gulp
@@ -106,6 +110,9 @@ workflows:
           requires:
             - shellcheck
       - package-cloud-cli:
+          requires:
+            - shellcheck
+      - ghr:
           requires:
             - shellcheck
       - gulp:
