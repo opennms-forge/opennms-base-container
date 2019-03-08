@@ -4,7 +4,7 @@
 
 # Base Image Dependency
 BASE_IMAGE="node"
-BASE_IMAGE_VERSION="11-alpine"
+BASE_IMAGE_VERSION="11-stretch"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
 # Version information
