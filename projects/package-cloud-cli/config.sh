@@ -4,7 +4,7 @@
 
 # Base Image Dependency
 BASE_IMAGE="ruby"
-BASE_IMAGE_VERSION="2.6.1-alpine"
+BASE_IMAGE_VERSION="2.6.1-stretch"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
 # Version information
