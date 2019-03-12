@@ -73,6 +73,10 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/gulp
 
+  shellcheck-image:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/shellcheck
+
   build-env:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/build-env
@@ -116,6 +120,9 @@ workflows:
           requires:
             - shellcheck
       - gulp:
+          requires:
+            - shellcheck
+      - shellcheck-image:
           requires:
             - shellcheck
       - build-env:

@@ -9,7 +9,7 @@ BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
 # Version information
 VERSION="1.0"
-BUILD_NUMBER="b4"
+BUILD_NUMBER="b5"
 
 REPO_RELEASE="stable"
 REPO_HOST="yum.opennms.org"
@@ -30,6 +30,7 @@ PACKAGES="gettext \
           make \
           cmake \
           gcc-c++ \
+          jq \
           rrdtool-devel \
           automake \
           libtool \

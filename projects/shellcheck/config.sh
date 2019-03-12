@@ -6,8 +6,9 @@
 BASE_IMAGE="ubuntu"
 BASE_IMAGE_VERSION="rolling"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
-BUILD_NUMBER="b1"
+BUILD_NUMBER="b2"
 
 # Version information
 VERSION="0.5.0"
 IMAGE_VERSION="${VERSION}-${BUILD_NUMBER}"
+
