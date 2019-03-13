@@ -11,4 +11,3 @@ BUILD_NUMBER="b2"
 # Version information
 VERSION="0.5.0"
 IMAGE_VERSION="${VERSION}-${BUILD_NUMBER}"
-
