@@ -6,10 +6,11 @@
 BASE_IMAGE="opennms/maven"
 BASE_IMAGE_VERSION="3.6.0-b3"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
+SHELLCHECK_VERSION="0.6.0"
 
 # Version information
 VERSION="1.0"
-BUILD_NUMBER="b5"
+BUILD_NUMBER="b6"
 
 REPO_RELEASE="stable"
 REPO_HOST="yum.opennms.org"
@@ -22,6 +23,7 @@ REPO_RPM="https://${REPO_HOST}/repofiles/opennms-repo-${REPO_RELEASE}-rhel7.noar
           http://yum.opennms.org/stable/rhel7/nsis/mingw32-nsis-2.50-1.el7.centos.x86_64.rpm"
 
 PACKAGES="gettext \
+          tree \
           wget \
           git-core \
           openssh-clients \

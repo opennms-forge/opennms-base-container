@@ -13,7 +13,9 @@ ARG REPO_HOST="yum.opennms.org"
 ARG REPO_RPM="https://${REPO_HOST}/repofiles/opennms-repo-${REPO_RELEASE}-rhel7.noarch.rpm \
               http://yum.opennms.org/stable/rhel7/nsis/mingw32-nsis-2.50-1.el7.centos.x86_64.rpm"
 
-ARG PACKAGES="gettext wget git which expect make cmake gcc-c++ jq rrdtool-devel automake libtool rpm-build redhat-rpm-config R-core jicmp jicmp6 jrrd2"
+ARG PACKAGES="gettext tree wget git which expect make cmake gcc-c++ jq rrdtool-devel automake libtool rpm-build redhat-rpm-config R-core jicmp jicmp6 jrrd2"
+
+ARG SHELLCHECK_VERSION="0.6.0"
 
 COPY ./rpms /tmp/rpms
 
@@ -27,7 +29,10 @@ RUN yum -y install epel-release && \
     rm -rf /tmp/rpms && \
     yum -y install ${PACKAGES} && \
     yum clean all && \
-    rm -rf /var/cache/yum
+    rm -rf /var/cache/yum && \
+    wget -qO- "https://storage.googleapis.com/shellcheck/shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz" | tar -xJv && \
+    mv shellcheck-"v${SHELLCHECK_VERSION}"/shellcheck /usr/bin/ && \
+    rm -rf shellcheck-*
 
 LABEL maintainer="The OpenNMS Group" \
       license="AGPLv3" \
