@@ -2,6 +2,9 @@
 
 # shellcheck disable=SC2034
 
+# Overwrite project name on DockerHub
+CONTAINER_PROJECT="openjdk"
+
 # Base Image Dependency
 BASE_IMAGE="opennms/centos"
 BASE_IMAGE_VERSION="7.6.1810"
