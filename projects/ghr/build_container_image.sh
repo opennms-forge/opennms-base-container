@@ -2,7 +2,7 @@
 
 set -x
 
-# shellcheck source=projects/build-env/config.sh
+# shellcheck source=projects/ghr/config.sh
 source ./config.sh
 
 # shellcheck source=projects/registry-config.sh
