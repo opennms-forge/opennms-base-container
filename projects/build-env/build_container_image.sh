@@ -8,7 +8,7 @@ source ./config.sh
 # shellcheck source=projects/registry-config.sh
 source ../registry-config.sh
 
-docker build -t "${CONTAINER_PROJECT}:${IMAGE_VERSION}" \
+docker build -t "${CONTAINER_PROJECT}:${IMAGE_VERSION[0]}" \
   --build-arg BASE_IMAGE="${BASE_IMAGE}" \
   --build-arg BASE_IMAGE_VERSION="${BASE_IMAGE_VERSION}" \
   --build-arg SHELLCHECK_VERSION="${SHELLCHECK_VERSION}" \
@@ -21,4 +21,4 @@ docker build -t "${CONTAINER_PROJECT}:${IMAGE_VERSION}" \
   --build-arg REPO_RPM="${REPO_RPM}" \
   .
 
-docker image save "${CONTAINER_PROJECT}:${IMAGE_VERSION}" -o "${CONTAINER_IMAGE}"
+docker image save "${CONTAINER_PROJECT}:${IMAGE_VERSION[0]}" -o "${CONTAINER_IMAGE}"
