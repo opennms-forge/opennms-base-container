@@ -20,3 +20,4 @@ IMAGE_VERSION=("${JDK_VERSION}_${VERSION}-${BUILD_NUMBER}"
 MAVEN_URL="https://www-eu.apache.org"
 MAVEN_PKG="${MAVEN_URL}/dist/maven/maven-3/${VERSION}/binaries/apache-maven-${VERSION}-bin.tar.gz"
 MAVEN_HOME="/opt/apache-maven-${VERSION}"
+
