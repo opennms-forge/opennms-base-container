@@ -2,22 +2,28 @@
 
 # shellcheck disable=SC2034
 
+# Overwrite project name on DockerHub
+CONTAINER_PROJECT="build-env"
+
 # Base Image Dependency
 BASE_IMAGE="opennms/maven"
-BASE_IMAGE_VERSION="3.6.0-b3"
+JDK_VERSION="jdk8"
+BASE_IMAGE_VERSION="${JDK_VERSION}_3.6.0-b4"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 SHELLCHECK_VERSION="0.6.0"
 
 # Version information
 VERSION="1.0"
-BUILD_NUMBER="b6"
+BUILD_NUMBER="b7"
+IMAGE_VERSION=("${JDK_VERSION}_${VERSION}-${BUILD_NUMBER}"
+               "${JDK_VERSION}_${VERSION}"
+               "${VERSION}-${BUILD_NUMBER}"
+               "${VERSION}")
 
 REPO_RELEASE="stable"
 REPO_HOST="yum.opennms.org"
 REPO_URL="https://${REPO_HOST}/${REPO_RELEASE}/common/opennms"
 REPO_KEY_URL="https://${REPO_HOST}/OPENNMS-GPG-KEY"
-
-IMAGE_VERSION="${VERSION}-${BUILD_NUMBER}"
 
 REPO_RPM="https://${REPO_HOST}/repofiles/opennms-repo-${REPO_RELEASE}-rhel7.noarch.rpm \
           http://yum.opennms.org/stable/rhel7/nsis/mingw32-nsis-2.50-1.el7.centos.x86_64.rpm"
