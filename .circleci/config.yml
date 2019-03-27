@@ -49,9 +49,13 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/isc-dhcp
   
-  openjdk:
+  openjdk-8:
     <<: *common_environment
-    working_directory: ~/opennms-container/projects/openjdk
+    working_directory: ~/opennms-container/projects/openjdk-8
+
+  openjdk-11:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/openjdk-11
 
   maven:
     <<: *common_environment
@@ -102,14 +106,18 @@ workflows:
       - isc-dhcp:
           requires:
             - shellcheck
-      - openjdk:
+      - openjdk-8:
+          requires:
+            - shellcheck
+            - centos
+      - openjdk-11:
           requires:
             - shellcheck
             - centos
       - maven:
           requires:
             - shellcheck
-            - openjdk
+            - openjdk-8
       - netlify-cli:
           requires:
             - shellcheck

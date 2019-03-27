@@ -2,7 +2,7 @@
 
 set -x
 
-# shellcheck source=projects/openjdk/config.sh
+# shellcheck source=projects/openjdk-11/config.sh
 source ./config.sh
 
 # shellcheck source=projects/registry-config.sh
