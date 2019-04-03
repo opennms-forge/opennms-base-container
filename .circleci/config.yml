@@ -107,7 +107,7 @@ jobs:
 
 workflows:
   version: 2
-  container_build_:
+  container_build:
     jobs:
       - shellcheck
       - tomcat:
