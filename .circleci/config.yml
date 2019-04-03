@@ -40,6 +40,10 @@ jobs:
   centos:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/centos
+  
+  confd:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/confd
 
   net-snmp:
     <<: *common_environment
@@ -112,6 +116,10 @@ workflows:
       - centos:
           requires:
             - shellcheck
+      - confd:
+          requires:
+            - shellcheck
+            - centos
       - net-snmp:
           requires:
             - shellcheck
