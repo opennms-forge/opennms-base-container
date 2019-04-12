@@ -28,8 +28,7 @@ RUN yum -y install epel-release && \
     if [ "$(ls -1 /tmp/rpms/*.rpm 2>/dev/null | wc -l)" != 0 ]; then cd /tmp/rpms && yum -y localinstall *.rpm; fi && \
     rm -rf /tmp/rpms && \
     yum -y install ${PACKAGES} && \
-    yum clean all && \
-    rm -rf /var/cache/yum && \
+    yum -y clean all && \
     wget -qO- "https://storage.googleapis.com/shellcheck/shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz" | tar -xJv && \
     mv shellcheck-"v${SHELLCHECK_VERSION}"/shellcheck /usr/bin/ && \
     rm -rf shellcheck-*

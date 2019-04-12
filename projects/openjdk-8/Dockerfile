@@ -11,8 +11,7 @@ ARG JDK_VERSION_DETAIL=${MAJOR_VERSION}.201.b09
 ENV JAVA_HOME /usr/lib/jvm/java-1.8.0
 
 RUN yum -y install java-${JDK_MAJOR_VERSION}-openjdk-devel-${JDK_VERSION_DETAIL} && \
-    yum -y clean all && \
-    rm -rf /var/cache/yum
+    yum -y clean all
 
 LABEL maintainer="The OpenNMS Group" \
       license="AGPLv3" \
