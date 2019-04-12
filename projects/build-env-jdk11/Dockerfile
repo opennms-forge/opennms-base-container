@@ -29,6 +29,7 @@ RUN yum -y install epel-release && \
     rm -rf /tmp/rpms && \
     yum -y install ${PACKAGES} && \
     yum -y clean all && \
+    rm -rf /var/cache/yum && \
     wget -qO- "https://storage.googleapis.com/shellcheck/shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz" | tar -xJv && \
     mv shellcheck-"v${SHELLCHECK_VERSION}"/shellcheck /usr/bin/ && \
     rm -rf shellcheck-*
