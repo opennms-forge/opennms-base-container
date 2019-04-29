@@ -105,6 +105,10 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/horizon-base
 
+  minion-base:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/minion-base
+
 workflows:
   version: 2
   container_build:
@@ -166,6 +170,10 @@ workflows:
             - shellcheck
             - maven-jdk11
       - horizon-base:
+          requires:
+            - shellcheck
+            - openjdk-11
+      - minion-base:
           requires:
             - shellcheck
             - openjdk-11
