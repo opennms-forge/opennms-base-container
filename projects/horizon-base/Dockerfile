@@ -16,7 +16,10 @@ ARG CONFD_URL="https://github.com/kelseyhightower/confd/releases/download/v${CON
 SHELL ["/bin/bash", "-c"]
 
 # Install packages, repositories and dependencies
-RUN curl -L ${CONFD_URL} -o /usr/bin/confd && \
+RUN setcap cap_net_raw+ep ${JAVA_HOME}/bin/java && \
+    echo ${JAVA_HOME}/lib/jli > /etc/ld.so.conf.d/java-latest.conf && \
+    ldconfig && \
+    curl -L ${CONFD_URL} -o /usr/bin/confd && \
     chmod +x /usr/bin/confd && \
     yum -y install epel-release && \
     yum -y install ${PACKAGES} && \
