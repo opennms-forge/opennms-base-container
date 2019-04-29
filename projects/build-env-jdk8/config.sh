@@ -16,9 +16,7 @@ SHELLCHECK_VERSION="0.6.0"
 VERSION="1.0"
 BUILD_NUMBER="b7"
 IMAGE_VERSION=("${JDK_VERSION}_${VERSION}-${BUILD_NUMBER}"
-               "${JDK_VERSION}_${VERSION}"
-               "${VERSION}-${BUILD_NUMBER}"
-               "${VERSION}")
+               "${JDK_VERSION}_${VERSION}")
 
 REPO_RELEASE="stable"
 REPO_HOST="yum.opennms.org"
