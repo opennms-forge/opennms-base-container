@@ -2,9 +2,6 @@
 
 # shellcheck disable=SC2034
 
-# Relative path to helper build helper scripts
-SCRIPTS_PATH="../../.circleci/scripts"
-
 # Base Image Dependency
 BASE_IMAGE="opennms/openjdk"
 BASE_IMAGE_VERSION="11.0.2.7"
