@@ -13,6 +13,9 @@ ARG PACKAGES="R-Core"
 ARG CONFD_VERSION="0.16.0"
 ARG CONFD_URL="https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64"
 
+ARG REPO_KEY_URL="https://yum.opennms.org/OPENNMS-GPG-KEY"
+ARG REPO_RPM="https://yum.opennms.org/repofiles/opennms-repo-stable-rhel7.noarch.rpm"
+
 SHELL ["/bin/bash", "-c"]
 
 # Install packages, repositories and dependencies
@@ -22,6 +25,8 @@ RUN setcap cap_net_raw+ep ${JAVA_HOME}/bin/java && \
     curl -L ${CONFD_URL} -o /usr/bin/confd && \
     chmod +x /usr/bin/confd && \
     yum -y install epel-release && \
+    rpm --import "${REPO_KEY_URL}" && \
+    yum -y install "${REPO_RPM}" && \
     yum -y install ${PACKAGES} && \
     yum clean all -y && \
     rm -rf /var/cache/yum

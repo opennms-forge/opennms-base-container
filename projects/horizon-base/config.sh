@@ -24,5 +24,14 @@ fi
 CONFD_VERSION="0.16.0"
 CONFD_URL="https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64"
 
+REPO_HOST="yum.opennms.org"
+REPO_RELEASE="stable"
+REPO_RPM="https://${REPO_HOST}/repofiles/opennms-repo-${REPO_RELEASE}-rhel7.noarch.rpm"
+REPO_KEY_URL="https://${REPO_HOST}/OPENNMS-GPG-KEY"
+
 # OpenNMS Horizon dependencies
-PACKAGES="R-core"
+PACKAGES="rrdtool
+          jrrd2
+          jicmp
+          jicmp6
+          R-core"

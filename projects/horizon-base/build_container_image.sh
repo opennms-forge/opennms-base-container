@@ -18,6 +18,8 @@ docker build -t "${CONTAINER_PROJECT}:${IMAGE_VERSION[0]}" \
   --build-arg BASE_IMAGE_VERSION="${BASE_IMAGE_VERSION}" \
   --build-arg CONFD_VERSION="${CONFD_VERSION}" \
   --build-arg CONFD_URL="${CONFD_URL}" \
+  --build-arg REPO_RPM="${REPO_RPM}" \
+  --build-arg REPO_KEY_URL="${REPO_KEY_URL}" \
   --build-arg VERSION="${VERSION}" \
   --build-arg PACKAGES="${PACKAGES}" \
   .
