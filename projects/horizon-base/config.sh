@@ -31,4 +31,8 @@ PACKAGES="rrdtool
           jrrd2
           jicmp
           jicmp6
-          R-core"
+          R-core
+          rsync
+          perl-XML-Twig
+          perl-libwww-perl"
+
