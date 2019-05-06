@@ -2,13 +2,16 @@
 
 # shellcheck disable=SC2034
 
+# Overwrite project name on DockerHub
+CONTAINER_PROJECT="base-horizon"
+
 # Base Image Dependency
 BASE_IMAGE="opennms/openjdk"
-BASE_IMAGE_VERSION="11.0.2.7"
+BASE_IMAGE_VERSION="1.8.0.201.b09-b1"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
 # Horizon Image versioning
-VERSION="1.0.0"
+VERSION="jdk8-1.0.0"
 
 # Docker Tags, use version by default
 IMAGE_VERSION=("${VERSION}")
@@ -27,7 +30,12 @@ REPO_RPM="https://${REPO_HOST}/repofiles/opennms-repo-${REPO_RELEASE}-rhel7.noar
 REPO_KEY_URL="https://${REPO_HOST}/OPENNMS-GPG-KEY"
 
 # OpenNMS Horizon dependencies
-PACKAGES="wget
-          gettext
+PACKAGES="rrdtool
+          jrrd2
           jicmp
-          jicmp6"
+          jicmp6
+          R-core
+          rsync
+          perl-XML-Twig
+          perl-libwww-perl"
+

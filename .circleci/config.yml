@@ -101,17 +101,29 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/tomcat
   
-  horizon-base:
+  base-horizon-jdk8:
     <<: *common_environment
-    working_directory: ~/opennms-container/projects/horizon-base
+    working_directory: ~/opennms-container/projects/base-horizon-jdk8
 
-  minion-base:
+  base-horizon-jdk11:
     <<: *common_environment
-    working_directory: ~/opennms-container/projects/minion-base
+    working_directory: ~/opennms-container/projects/base-horizon-jdk11
 
-  sentinel-base:
+  base-minion-jdk8:
     <<: *common_environment
-    working_directory: ~/opennms-container/projects/sentinel-base
+    working_directory: ~/opennms-container/projects/base-minion-jdk8
+
+  base-minion-jdk11:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/base-minion-jdk11
+
+  base-sentinel-jdk8:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/base-sentinel-jdk8
+
+  base-sentinel-jdk11:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/base-sentinel-jdk11
 
 workflows:
   version: 2
@@ -173,15 +185,27 @@ workflows:
           requires:
             - shellcheck
             - maven-jdk11
-      - horizon-base:
+      - base-horizon-jdk8:
+          requires:
+            - shellcheck
+            - openjdk-8
+      - base-horizon-jdk11:
           requires:
             - shellcheck
             - openjdk-11
-      - minion-base:
+      - base-minion-jdk8:
+          requires:
+            - shellcheck
+            - openjdk-8
+      - base-minion-jdk11:
           requires:
             - shellcheck
             - openjdk-11
-      - sentinel-base:
+      - base-sentinel-jdk8:
+          requires:
+            - shellcheck
+            - openjdk-8
+      - base-sentinel-jdk11:
           requires:
             - shellcheck
             - openjdk-11
