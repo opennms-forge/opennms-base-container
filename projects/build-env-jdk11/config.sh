@@ -8,7 +8,7 @@ CONTAINER_PROJECT="build-env"
 # Base Image Dependency
 BASE_IMAGE="opennms/maven"
 JDK_VERSION="jdk11"
-BASE_IMAGE_VERSION="${JDK_VERSION}_3.6.0-b1"
+BASE_IMAGE_VERSION="${JDK_VERSION}_3.6.1-b1"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 SHELLCHECK_VERSION="0.6.0"
 
