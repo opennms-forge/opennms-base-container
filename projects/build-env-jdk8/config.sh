@@ -13,8 +13,8 @@ BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 SHELLCHECK_VERSION="0.6.0"
 
 # Version information
-VERSION="1.0"
-BUILD_NUMBER="b7"
+VERSION="1.1"
+BUILD_NUMBER="b1"
 IMAGE_VERSION=("${JDK_VERSION}_${VERSION}-${BUILD_NUMBER}"
                "${JDK_VERSION}_${VERSION}")
 
