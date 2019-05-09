@@ -7,11 +7,11 @@ CONTAINER_PROJECT="base-horizon"
 
 # Base Image Dependency
 BASE_IMAGE="opennms/openjdk"
-BASE_IMAGE_VERSION="1.8.0.201.b09-b1"
+BASE_IMAGE_VERSION="1.8.0.212.b04-b1"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
 # Horizon Image versioning
-VERSION="jdk8-1.0.0"
+VERSION="jdk8-1.0.1"
 
 # Docker Tags, use version by default
 IMAGE_VERSION=("${VERSION}")
