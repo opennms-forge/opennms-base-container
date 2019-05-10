@@ -9,7 +9,7 @@ ARG BUILD_DATE="1970-01-01T00:00:00+0000"
 USER root
 
 RUN apt-get update && \
-    apt-get install -y ca-certificates shellcheck && \
+    apt-get install -y ca-certificates shellcheck git-core && \
     rm -rf /var/lib/apt/lists/*
 
 LABEL maintainer="The OpenNMS Group" \
