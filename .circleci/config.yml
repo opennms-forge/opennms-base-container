@@ -73,6 +73,10 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/maven-jdk11
 
+  maven-jdk:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/maven-jdk
+
   netlify-cli:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/netlify-cli
@@ -100,6 +104,10 @@ jobs:
   build-env-jdk11:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/build-env-jdk11
+
+  build-env-jdk:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/build-env-jdk
 
   tomcat:
     <<: *common_environment
@@ -170,6 +178,10 @@ workflows:
           requires:
             - shellcheck
             - openjdk-11
+      - maven-jdk:
+          requires:
+            - shellcheck
+            - openjdk
       - netlify-cli:
           requires:
             - shellcheck
@@ -193,6 +205,10 @@ workflows:
           requires:
             - shellcheck
             - maven-jdk11
+      - build-env-jdk:
+          requires:
+            - shellcheck
+            - maven-jdk
       - base-horizon-jdk8:
           requires:
             - shellcheck
