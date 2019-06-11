@@ -61,6 +61,10 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/openjdk-11
 
+  openjdk:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/openjdk
+
   maven-jdk8:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/maven-jdk8
@@ -151,6 +155,10 @@ workflows:
             - shellcheck
             - centos
       - openjdk-11:
+          requires:
+            - shellcheck
+            - centos
+      - openjdk:
           requires:
             - shellcheck
             - centos
