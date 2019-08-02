@@ -24,8 +24,8 @@ RUN apt-get update && \
                        dovecot-imapd \
                        whois \
                        iproute2 && \
-    mv /etc/dovecot/conf.d /etc/dovecot/conf.d-example
-#    rm -rf /var/lib/apt/lists/*
+    mv /etc/dovecot/conf.d /etc/dovecot/conf.d-example && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY container-fs/etc/s6/services /etc/s6/services
 COPY container-fs/etc/cont-init.d /etc/cont-init.d
