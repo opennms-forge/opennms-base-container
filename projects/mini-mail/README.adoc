@@ -125,3 +125,28 @@ Content-Disposition: inline
 
 test
 ----
+
+== Use it with OpenNMS
+
+If you want to use this mail service with OpenNMS with docker compose you can simply add the following service:
+
+[source, yaml]
+----
+mail:
+  image: opennms/mini-mail
+  container_name: mail
+  ports:
+    - "143:143/tcp"
+----
+
+Configure OpenNMS to use the mail server as the following:
+
+.${OPENNMS_HOME/etc/javamail-configuration.properties
+[source]
+----
+org.opennms.core.utils.fromAddress=opennms@example.org
+org.opennms.core.utils.mailHost=mail
+org.opennms.core.utils.authenticate=true
+org.opennms.core.utils.authenticateUser=opennms
+org.opennms.core.utils.authenticatePassword=opennmspass
+----
