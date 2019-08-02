@@ -79,7 +79,7 @@ touch /var/mail/mynewuser
 chown mynewuser:mail /var/mail/mynewuser
 ----
 
-If you want to have a more suffisticated postfix configuration you can inject the following files:
+If you want to have a more sophisticated postfix configuration you can inject the following files:
 
 ./etc/cont-init.d/10-config-postix.sh
 [source, bash]
