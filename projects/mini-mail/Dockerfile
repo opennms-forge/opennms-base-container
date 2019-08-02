@@ -18,12 +18,11 @@ ENV MESSAGE_SIZE_LIMIT="52428800"
 
 # Install package here for cache
 RUN apt-get update && \
-    apt-get -y install inetutils-syslogd \
-                       postfix \
-                       dovecot-common \
-                       dovecot-imapd \
-                       whois \
-                       iproute2 && \
+    apt-get -y install --no-install-recommends inetutils-syslogd \
+                                               postfix \
+                                               dovecot-common \
+                                               dovecot-imapd \
+                                               whois && \
     mv /etc/dovecot/conf.d /etc/dovecot/conf.d-example && \
     rm -rf /var/lib/apt/lists/*
 
