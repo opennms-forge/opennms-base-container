@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -x
-
 MAILDOMAIN="${MAILDOMAIN:-"example.org"}"
 MESSAGE_SIZE_LIMIT="${MESSAGE_SIZE_LIMIT:-52428800}"
 

@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
+logger -p mail.info "s6-supervise : syslogd -> spawning process"
 exec syslogd -n
