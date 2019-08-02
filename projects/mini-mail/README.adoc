@@ -141,7 +141,7 @@ mail:
 
 Configure OpenNMS to use the mail server as the following:
 
-.${OPENNMS_HOME/etc/javamail-configuration.properties
+.${OPENNMS_HOME}/etc/javamail-configuration.properties
 [source]
 ----
 org.opennms.core.utils.fromAddress=opennms@example.org
