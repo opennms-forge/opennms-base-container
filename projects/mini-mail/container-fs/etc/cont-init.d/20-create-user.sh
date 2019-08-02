@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-useradd -m -G mail -p "$(mkpasswd opennms2pass)" "opennms"
+useradd -m -G mail -p "$(mkpasswd opennmspass)" "opennms"
 touch /var/mail/opennms
 chown opennms:mail /var/mail/opennms
 
