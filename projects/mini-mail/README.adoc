@@ -1,6 +1,6 @@
 = Minimal Mail Server for Testing
 
-This container image runs a minimal mail service wich is main purpose is testing mail functionalities.
+This container image runs a minimal mail service with the main purpose for testing mail functionalities.
 The following high level functionalities are provided:
 
 * receives and forwards plain SMTP mails on port 25 to existing users
