@@ -1,0 +1,127 @@
+= Minimal Mail Server for Testing
+
+This container image runs a minimal mail service wich is main purpose is testing mail functionalities.
+The following high level functionalities are provided:
+
+* receives and forwards plain SMTP mails on port 25 to existing users
+* initializes by default 3 user mail boxes which can send and receive mails locally
+* provides unencrypted IMAP service to give the users access to their mailbox
+* a working default configuration for users in the domain `example.org`
+
+The default configuration is provided as the following:
+
+* Mail domain: `example.org`
+* User1: user1@example.org, Login: `user1`, Password: `user1pass`
+* User2: user2@example.org, Login: `user2`, Password: `user2pass`
+* OpenNMS: opennms@example.org, Login: `opennms`, Password: `opennmspass`
+
+The credentials need to be used for sending mails via _SMTP_ and reading with _IMAP_.
+
+== Usage
+
+The mail server can be started without any further configuration parameters as the following:
+
+[source, bash]
+----
+docker run --publish 25:25 --publish 143:143 opennms/mini-mail
+----
+
+== Volumes
+
+Mails are stored in the container in `/var/mail` and for IMAP in the users home directories in `/home`.
+If you want to persist the data mount the volumes to a storage:
+
+[source, bash]
+----
+-v $(pwd)/home:/home -v $(pwd)/var-mail:/var/mail
+----
+
+== Modifying at Runtime
+
+The following environment variables can be used to change the behavior at start time with `-e <name>=<value>`:
+
+* `MAILDOMAIN`: defaults value is `example.org`
+* `MESSAGE_SIZE_LIMIT`: default value is `52428800`
+
+If you don't want the default users and your own user, you can overwrite the default user creation script like this:
+
+./etc/cont-init.d/20-create-user.sh
+[source, bash]
+----
+#!/usr/bin/env bash
+useradd -m -G mail -p "$(mkpasswd myNewPass)" "mynewuser"
+touch /var/mail/mynewuser
+chown mynewuser:mail /var/mail/mynewuser
+----
+
+If you want to have a more suffisticated postfix configuration you can inject the following files:
+
+./etc/cont-init.d/10-config-postix.sh
+[source, bash]
+----
+#!/usr/bin/env bash
+
+MAILDOMAIN="${MAILDOMAIN:-"example.org"}"
+MESSAGE_SIZE_LIMIT="${MESSAGE_SIZE_LIMIT:-52428800}"
+
+postconf -e myhostname="${MAILDOMAIN}"
+postconf -e "mydestination = ${MAILDOMAIN}, ${HOSTNAME}, localhost.localdomain, localhost"
+postconf -e 'smtpd_sasl_type = dovecot'
+postconf -e 'smtpd_sasl_auth_enable = yes'
+postconf -e 'smtpd_recipient_restrictions = permit_sasl_authenticated,permit_mynetworks'
+postconf -e 'smtpd_sasl_path = private/auth'
+postconf -e message_size_limit="${MESSAGE_SIZE_LIMIT}"
+----
+
+== Using curl to investigate mails from IMAP
+
+It is possible to use `curl` to examine mail boxes and fetching mails from a mail box.
+The following commands can be used:
+
+
+.Check if there are mails in the inbox for user1
+[source, bash]
+----
+curl --url "imap://localhost" --user "user1:user1pass" -X "EXAMINE INBOX"
+
+* FLAGS (\Answered \Flagged \Deleted \Seen \Draft)
+* OK [PERMANENTFLAGS ()] Read-only mailbox.
+* 1 EXISTS
+* 0 RECENT
+* OK [UIDVALIDITY 1564748371] UIDs valid
+* OK [UIDNEXT 2] Predicted next UID
+----
+
+.Fetch UID from mails in inbox
+[source, bash]
+----
+curl --url "imap://localhost/inbox" --user "user1:user1pass" -X "fetch 1:* (UID FLAGS)"
+
+* 1 FETCH (UID 1 FLAGS (\Seen))
+* 2 FETCH (UID 2 FLAGS (\Seen))
+----
+
+.Fetch a specific mail by the mail UID
+[source, bash]
+----
+curl --url "imap://localhost/inbox;UID=1" --user "user1:user1pass
+
+Return-Path: <user1@example.org>
+X-Original-To: user1@example.org
+Delivered-To: user1@example.org
+Received: from localhost (unknown [172.17.0.1])
+	by example.org (Postfix) with ESMTP id 6E81B49C
+	for <user1@example.org>; Fri,  2 Aug 2019 12:19:44 +0000 (UTC)
+Date: Fri, 02 Aug 2019 14:19:44 +0200
+From: Ronny Trommer <user1@example.org>
+To: user1@example.org
+Subject: test
+Message-ID: <7D69D86F855785F734B36A88@blinky.local>
+X-Mailer: Mulberry/4.0.8 (Mac OS X)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+test
+----
