@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+logger -p mail.info "s6-supervise : dovecot -> spawning process"
+dovecot -c /etc/dovecot/dovecot.conf -F

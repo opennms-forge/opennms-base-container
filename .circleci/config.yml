@@ -52,6 +52,10 @@ jobs:
   isc-dhcp:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/isc-dhcp
+
+  mini-mail:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/mini-mail
   
   openjdk-8:
     <<: *common_environment
@@ -156,6 +160,9 @@ workflows:
           requires:
             - shellcheck
       - isc-dhcp:
+          requires:
+            - shellcheck
+      - mini-mail:
           requires:
             - shellcheck
       - openjdk-8:
