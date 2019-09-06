@@ -5,12 +5,13 @@ ARG VERSION=${BASE_IMAGE_VERSION}
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
 ARG VERSION=${BASE_IMAGE_VERSION}
-ARG BUILD_DATE="1970-01-01T00:00:00+0000"
 
 RUN yum-config-manager --enable cr && \
     yum -y --setopt=tsflags=nodocs update && \
     yum -y clean all && \
     rm -rf /var/cache/yum
+
+ARG BUILD_DATE="1970-01-01T00:00:00+0000"
 
 LABEL maintainer="The OpenNMS Group" \
       license="AGPLv3" \
