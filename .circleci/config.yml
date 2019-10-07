@@ -56,7 +56,11 @@ jobs:
   mini-mail:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/mini-mail
-  
+
+  frrouting:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/frrouting
+
   openjdk-8:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/openjdk-8
@@ -163,6 +167,9 @@ workflows:
           requires:
             - shellcheck
       - mini-mail:
+          requires:
+            - shellcheck
+      - frrouting:
           requires:
             - shellcheck
       - openjdk-8:
