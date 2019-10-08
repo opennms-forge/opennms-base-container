@@ -84,19 +84,29 @@ ARG BASE_IMAGE_VERSION="edge"
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
+ARG S6_OVERLAY_VERSION="v1.22.1.0"
+ADD https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz /tmp/
+RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
+    rm -rf /tmp/s6-overlay-amd64.tar.gz
+
 RUN mkdir -p /pkgs/apk
 
 COPY --from=package-builder /pkgs/apk/ /pkgs/apk/
 
 # hadolint ignore=DL3018
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-	apk add --no-cache --update-cache tini && \
+	apk add --no-cache --update-cache net-snmp net-snmp-tools && \
 	apk add --no-cache --allow-untrusted /pkgs/apk/*/*.apk && \
 	rm -rf /pkgs
 
-COPY container-fs/docker-start /usr/lib/frr/docker-start
+COPY container-fs/etc/s6/services /etc/s6/services
+COPY container-fs/etc/fix-attrs.d /etc/fix-attrs.d
+COPY container-fs/etc/snmp /etc/snmp
+COPY container-fs/docker-start /usr/lib/frr
 
-ENTRYPOINT [ "/sbin/tini", "--", "/usr/lib/frr/docker-start" ]
+ENTRYPOINT [ "/init" ]
+
+CMD ["/usr/lib/frr/docker-start"]
 
 LABEL maintainer="ronny@opennms.org" \
       license="LGPLv2.1" \

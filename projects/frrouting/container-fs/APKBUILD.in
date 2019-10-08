@@ -46,7 +46,7 @@ build() {
 		--enable-vtysh \
 		--enable-multipath=64 \
 		--enable-vty-group=frrvty \
-		--enable-snmp \
+		--enable-snmp=agentx \
 		--enable-shell-access \
 		--enable-user=$_user \
 		--enable-group=$_user

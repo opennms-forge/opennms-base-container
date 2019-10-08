@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+/usr/sbin/snmpd -f -Le -LS0-6d -c /etc/snmp/snmpd.conf
