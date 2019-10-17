@@ -57,9 +57,9 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/mini-mail
 
-  frrouting:
+  gobgp:
     <<: *common_environment
-    working_directory: ~/opennms-container/projects/frrouting
+    working_directory: ~/opennms-container/projects/gobgp
 
   openjdk-8:
     <<: *common_environment
@@ -169,7 +169,7 @@ workflows:
       - mini-mail:
           requires:
             - shellcheck
-      - frrouting:
+      - gobgp:
           requires:
             - shellcheck
       - openjdk-8:
