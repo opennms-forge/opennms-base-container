@@ -3,14 +3,13 @@
 # shellcheck disable=SC2034
 
 # Base Image Dependency
-BASE_IMAGE="centos"
-BASE_IMAGE_VERSION="8"
+BASE_IMAGE="opennms/centos"
+BASE_IMAGE_VERSION="8-b2360"
 
 # Version information
 VERSION="2.9.0"
-FLOATING_VERSION="latest"
-IMAGE_VERSION=("${VERSION}"
-               "${FLOATING_VERSION}")
+CONFD_URL=https://github.com/osrg/gobgp/releases/download/v${VERSION}/gobgp_${VERSION}_linux_amd64.tar.gz
+IMAGE_VERSION=("${VERSION}")
 
 # Most specific tag when it is not build locally and in CircleCI
 if [ -n "${CIRCLE_BUILD_NUM}" ]; then

@@ -7,7 +7,7 @@ CONTAINER_PROJECT="openjdk"
 
 # Base Image Dependency
 BASE_IMAGE="opennms/centos"
-BASE_IMAGE_VERSION="7-b2323"
+BASE_IMAGE_VERSION="8-b2360"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
 # Specific container config

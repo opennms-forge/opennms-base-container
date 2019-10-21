@@ -172,6 +172,7 @@ workflows:
       - gobgp:
           requires:
             - shellcheck
+            - centos
       - openjdk-8:
           requires:
             - shellcheck
