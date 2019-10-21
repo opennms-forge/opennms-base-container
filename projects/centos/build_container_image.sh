@@ -12,11 +12,7 @@ docker build -t "${CONTAINER_PROJECT}:${IMAGE_VERSION[0]}" \
   --build-arg BASE_IMAGE="${BASE_IMAGE}" \
   --build-arg BASE_IMAGE_VERSION="${BASE_IMAGE_VERSION}" \
   --build-arg BUILD_DATE="${BUILD_DATE}" \
-  --build-arg BUILD_JOB_ID="${CIRCLE_WORKFLOW_JOB_ID}" \
-  --build-arg BUILD_NUMBER="${CIRCLE_BUILD_NUM}" \
-  --build-arg BUILD_URL="${CIRCLE_BUILD_URL}" \
   --build-arg VERSION="${BASE_IMAGE_VERSION}" \
-  --build-arg VCS_URL="${CIRCLE_REPOSITORY_URL}" \
   --build-arg VCS_REF="$(git describe --always)" \
   .
 
