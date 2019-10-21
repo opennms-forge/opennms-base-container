@@ -4,7 +4,8 @@
 
 # Configure base image dependency
 BASE_IMAGE="opennms/centos"
-BASE_IMAGE_VERSION="7.6.1810-b5"
+BASE_IMAGE_VERSION="8-b2360"
+
 MAJOR_VERSION="0"
 VERSION="${MAJOR_VERSION}.16.0"
 CONFD_URL="https://github.com/kelseyhightower/confd/releases/download/v${VERSION}/confd-${VERSION}-linux-amd64"

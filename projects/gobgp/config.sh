@@ -3,8 +3,8 @@
 # shellcheck disable=SC2034
 
 # Base Image Dependency
-BASE_IMAGE="centos"
-BASE_IMAGE_VERSION="8"
+BASE_IMAGE="opennms/centos"
+BASE_IMAGE_VERSION="8-b2360"
 
 # Version information
 VERSION="2.9.0"

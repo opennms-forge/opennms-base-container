@@ -1,5 +1,5 @@
 ARG BASE_IMAGE="centos"
-ARG BASE_IMAGE_VERSION="7"
+ARG BASE_IMAGE_VERSION="8"
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
@@ -9,9 +9,9 @@ ARG JDK8_VERSION_DETAIL=${JDK8_MAJOR_VERSION}.212.b04
 ARG JDK11_MAJOR_VERSION="11"
 ARG JDK11_VERSION_DETAIL="${JDK11_MAJOR_VERSION}.0.2.7"
 
-RUN yum -y install java-${JDK8_MAJOR_VERSION}-openjdk-devel-${JDK8_VERSION_DETAIL} && \
-    yum -y install java-${JDK11_MAJOR_VERSION}-openjdk-devel-${JDK11_VERSION_DETAIL} && \
-    yum -y clean all && \
+RUN dnf -y install java-${JDK8_MAJOR_VERSION}-openjdk-devel-${JDK8_VERSION_DETAIL} && \
+    dnf -y install java-${JDK11_MAJOR_VERSION}-openjdk-devel-${JDK11_VERSION_DETAIL} && \
+    dnf clean all && \
     rm -rf /var/cache/yum
 
 ARG BUILD_DATE="1970-01-01T00:00:00+0000"
