@@ -16,13 +16,24 @@ WORKDIR /opt
 RUN curl ${MAVEN_URL} | tar xz
 
 ARG BUILD_DATE="1970-01-01T00:00:00+0000"
+ARG SOURCE
+ARG REVISION
+ARG BUILD_JOB_ID
+ARG BUILD_NUMBER
+ARG BUILD_URL
+ARG BUILD_BRANCH
+ARG JDK_VERSION
 
-LABEL maintainer="The OpenNMS Group" \
-      license="Apache License, Version 2.0" \
-      name="Apache Maven" \
-      version="${VERSION}" \
-      build.date="${BUILD_DATE}" \
-      vendor="OpenNMS Community" \
-      org.opennms.container.image.app.maven.name="Apache Maven" \
-      org.opennms.container.image.app.maven.version="${VERSION}" \
-      org.opennms.container.image.app.maven.build-date="${BUILD_DATE}"
+LABEL org.opencontainers.image.created="${BUILD_DATE}" \
+      org.opencontainers.image.title="Apache Maven ${MAVEN_VERSION} with OpenJDK ${JDK_VERSION}" \
+      org.opencontainers.image.source="${SOURCE}" \
+      org.opencontainers.image.revision="${REVISION}" \
+      org.opencontainers.image.version="${JDK_VERSION}" \
+      org.opencontainers.image.vendor="The OpenNMS Group, Inc." \
+      org.opencontainers.image.authors="OpenNMS Community" \
+      org.opencontainers.image.licenses="AGPL-3.0" \
+      org.opennms.image.base="${BASE_IMAGE}:${BASE_IMAGE_VERSION}" \
+      org.opennme.cicd.jobid="${BUILD_JOB_ID}" \
+      org.opennms.cicd.buildnumber="${BUILD_NUMBER}" \
+      org.opennms.cicd.buildurl="${BUILD_URL}" \
+      org.opennms.cicd.branch="${BUILD_BRANCH}"

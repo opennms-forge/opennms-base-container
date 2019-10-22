@@ -7,15 +7,20 @@ CONTAINER_PROJECT="maven"
 
 # Base Image Dependency
 BASE_IMAGE="opennms/openjdk"
-BASE_IMAGE_VERSION="8-11"
+JDK_VERSION="1.8.0.222.b10-11.0.4.11"
+MAVEN_VERSION="3.6.1"
+BASE_IMAGE_VERSION="${JDK_VERSION}-b2552"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
 # Version information
-VERSION="3.6.1"
-BUILD_NUMBER="b2"
-IMAGE_VERSION=("${BASE_IMAGE_VERSION}_${VERSION}-${BUILD_NUMBER}"
-               "${VERSION}-${BUILD_NUMBER}")
+VERSION="jdk8-jdk11-${MAVEN_VERSION}"
+IMAGE_VERSION=("${VERSION}")
 
-MAVEN_URL="https://www-eu.apache.org"
-MAVEN_PKG="${MAVEN_URL}/dist/maven/maven-3/${VERSION}/binaries/apache-maven-${VERSION}-bin.tar.gz"
-MAVEN_HOME="/opt/apache-maven-${VERSION}"
+MAVEN_HOST="https://www-eu.apache.org"
+MAVEN_URL="${MAVEN_HOST}/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz"
+MAVEN_HOME="/opt/apache-maven-${MAVEN_VERSION}"
+
+# Most specific tag when it is not build locally and in CircleCI
+if [ -n "${CIRCLE_BUILD_NUM}" ]; then
+  IMAGE_VERSION+=("${VERSION}-b${CIRCLE_BUILD_NUM}")
+fi
