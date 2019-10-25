@@ -41,6 +41,7 @@ RUN if [ "$(ls -1 /tmp/rpms/*.rpm 2>/dev/null | wc -l)" != 0 ]; then cd /tmp/rpm
     rm -rf /var/cache/yum
 
 ARG BUILD_DATE="1970-01-01T00:00:00+0000"
+ARG VERSION
 ARG SOURCE
 ARG REVISION
 ARG BUILD_JOB_ID
