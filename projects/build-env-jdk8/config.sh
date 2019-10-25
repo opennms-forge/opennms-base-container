@@ -8,41 +8,26 @@ CONTAINER_PROJECT="build-env"
 # Base Image Dependency
 BASE_IMAGE="opennms/maven"
 JDK_VERSION="jdk8"
-BASE_IMAGE_VERSION="${JDK_VERSION}_3.6.1-b1"
+MAVEN_VERSION="3.6.1"
+BASE_IMAGE_VERSION="${JDK_VERSION}-${MAVEN_VERSION}-b2630"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 SHELLCHECK_VERSION="0.6.0"
 
 # Version information
-VERSION="1.2"
-BUILD_NUMBER="b1"
-IMAGE_VERSION=("${JDK_VERSION}_${VERSION}-${BUILD_NUMBER}"
-               "${JDK_VERSION}_${VERSION}")
+VERSION="${JDK_VERSION}-${MAVEN_VERSION}"
+IMAGE_VERSION=("${VERSION}")
+
+# Most specific tag when it is not build locally and in CircleCI
+if [ -n "${CIRCLE_BUILD_NUM}" ]; then
+  IMAGE_VERSION+=("${VERSION}-b${CIRCLE_BUILD_NUM}")
+fi
 
 REPO_RELEASE="stable"
 REPO_HOST="yum.opennms.org"
 REPO_URL="https://${REPO_HOST}/${REPO_RELEASE}/common/opennms"
 REPO_KEY_URL="https://${REPO_HOST}/OPENNMS-GPG-KEY"
 
-ADD_RPMS="https://${REPO_HOST}/repofiles/opennms-repo-${REPO_RELEASE}-rhel7.noarch.rpm \
-          http://yum.opennms.org/stable/rhel7/nsis/mingw32-nsis-2.50-1.el7.centos.x86_64.rpm"
+ADD_RPMS="https://${REPO_HOST}/repofiles/opennms-repo-${REPO_RELEASE}-rhel8.noarch.rpm \
+          https://${REPO_HOST}/${REPO_RELEASE}/rhel7/nsis/mingw32-nsis-2.50-1.el7.centos.x86_64.rpm"
 
-PACKAGES="gettext \
-          tree \
-          wget \
-          git-core \
-          openssh-clients \
-          which \
-          expect \
-          make \
-          cmake \
-          gcc-c++ \
-          jq \
-          rrdtool-devel \
-          automake \
-          libtool \
-          rpm-build \
-          redhat-rpm-config \
-          R-core \
-          jicmp \
-          jicmp6 \
-          jrrd2"
+PACKAGES="gettext tree wget git-core openssh-clients which expect make cmake gcc-c++ jq rrdtool-devel automake libtool rpm-build redhat-rpm-config R-core jicmp jicmp6 jrrd2"
