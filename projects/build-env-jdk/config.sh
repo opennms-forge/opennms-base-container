@@ -30,4 +30,4 @@ REPO_KEY_URL="https://${REPO_HOST}/OPENNMS-GPG-KEY"
 ADD_RPMS="https://${REPO_HOST}/repofiles/opennms-repo-${REPO_RELEASE}-rhel8.noarch.rpm \
           https://${REPO_HOST}/${REPO_RELEASE}/rhel7/nsis/mingw32-nsis-2.50-1.el7.centos.x86_64.rpm"
 
-PACKAGES="gettext tree wget git-core openssh-clients which expect make cmake gcc-c++ jq rrdtool-devel automake libtool rpm-build redhat-rpm-config R-core jicmp jicmp6 jrrd2"
+PACKAGES="rsync gettext tree wget git-core openssh-clients which expect make cmake gcc-c++ jq rrdtool-devel automake libtool rpm-build redhat-rpm-config R-core jicmp jicmp6 jrrd2"
