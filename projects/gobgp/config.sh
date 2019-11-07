@@ -4,7 +4,7 @@
 
 # Base Image Dependency
 BASE_IMAGE="opennms/centos"
-BASE_IMAGE_VERSION="8-b2360"
+BASE_IMAGE_VERSION="8-b2974"
 
 # Version information
 VERSION="2.9.0"
