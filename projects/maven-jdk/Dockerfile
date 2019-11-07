@@ -23,12 +23,13 @@ ARG BUILD_NUMBER
 ARG BUILD_URL
 ARG BUILD_BRANCH
 ARG JDK_VERSION
+ARG VERSION
 
 LABEL org.opencontainers.image.created="${BUILD_DATE}" \
       org.opencontainers.image.title="Apache Maven ${MAVEN_VERSION} with OpenJDK ${JDK_VERSION}" \
       org.opencontainers.image.source="${SOURCE}" \
       org.opencontainers.image.revision="${REVISION}" \
-      org.opencontainers.image.version="${JDK_VERSION}" \
+      org.opencontainers.image.version="${VERSION}" \
       org.opencontainers.image.vendor="The OpenNMS Group, Inc." \
       org.opencontainers.image.authors="OpenNMS Community" \
       org.opencontainers.image.licenses="AGPL-3.0" \

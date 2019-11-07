@@ -7,13 +7,13 @@ CONTAINER_PROJECT="maven"
 
 # Base Image Dependency
 BASE_IMAGE="opennms/openjdk"
-JDK_VERSION="11.0.4.11"
+JDK_VERSION="11.0.5.10"
 MAVEN_VERSION="3.6.2"
-BASE_IMAGE_VERSION="${JDK_VERSION}-b2553"
+BASE_IMAGE_VERSION="${JDK_VERSION}-b3108"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
 # Version information
-VERSION="jdk11-${MAVEN_VERSION}"
+VERSION="${JDK_VERSION}-${MAVEN_VERSION}"
 IMAGE_VERSION=("${VERSION}")
 
 MAVEN_HOST="https://www-eu.apache.org"
