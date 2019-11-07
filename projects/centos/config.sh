@@ -13,3 +13,4 @@ IMAGE_VERSION=("${VERSION}")
 if [ -n "${CIRCLE_BUILD_NUM}" ]; then
   IMAGE_VERSION+=("${VERSION}-b${CIRCLE_BUILD_NUM}")
 fi
+
