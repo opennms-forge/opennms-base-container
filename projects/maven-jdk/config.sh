@@ -16,7 +16,7 @@ BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 VERSION="${JDK_VERSION}-${MAVEN_VERSION}"
 IMAGE_VERSION=("${VERSION}")
 
-MAVEN_HOST="https://www-eu.apache.org"
+MAVEN_HOST="https://mirror.informatik.hs-fulda.de"
 MAVEN_URL="${MAVEN_HOST}/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz"
 MAVEN_HOME="/opt/apache-maven-${MAVEN_VERSION}"
 
