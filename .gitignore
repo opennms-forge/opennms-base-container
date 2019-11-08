@@ -1,6 +1,7 @@
 .idea/
 .project
 .DS_Store
+.*.sw?
 *.iml
 *.oci
 
