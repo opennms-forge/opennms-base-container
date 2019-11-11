@@ -120,6 +120,10 @@ jobs:
   tomcat:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/tomcat
+
+  debian:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/debian
   
 workflows:
   version: 2
@@ -200,3 +204,6 @@ workflows:
           requires:
             - shellcheck
             - maven-jdk
+      - debian:
+          requires:
+            - shellcheck
