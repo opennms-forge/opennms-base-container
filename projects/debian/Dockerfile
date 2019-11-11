@@ -9,9 +9,10 @@ ARG VERSION=${BASE_IMAGE_VERSION}
 ARG PACKAGES="software-properties-common"
 
 RUN apt-get update && \
-	apt-get -u -y dist-upgrade
-
-RUN apt-get -y install ${PACKAGES}
+    apt-get -u -y dist-upgrade && \
+    apt-get -y --no-install-recommends install ${PACKAGES} && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 ARG BUILD_DATE="1970-01-01T00:00:00+0000"
 ARG SOURCE
