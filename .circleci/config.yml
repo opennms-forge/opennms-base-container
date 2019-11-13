@@ -137,6 +137,18 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/debian-openjdk
 
+  debian-build-env-jdk8:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/debian-build-env-jdk8
+
+  debian-build-env-jdk11:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/debian-build-env-jdk11
+
+  debian-build-env-jdk:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/debian-build-env-jdk
+
 workflows:
   version: 2
   container_build:
@@ -231,3 +243,15 @@ workflows:
           requires:
             - shellcheck
             - debian
+      - debian-build-env-jdk8:
+          requires:
+            - shellcheck
+            - debian-openjdk-8
+      - debian-build-env-jdk11:
+          requires:
+            - shellcheck
+            - debian-openjdk-11
+      - debian-build-env-jdk:
+          requires:
+            - shellcheck
+            - debian-openjdk
