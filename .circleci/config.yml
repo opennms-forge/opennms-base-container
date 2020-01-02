@@ -149,6 +149,10 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/debian-build-env-jdk
 
+  snapcraft:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/snapcraft
+
 workflows:
   version: 2
   container_build:
@@ -255,3 +259,6 @@ workflows:
           requires:
             - shellcheck
             - debian-openjdk
+      - snapcraft:
+          requires:
+            - shellcheck
