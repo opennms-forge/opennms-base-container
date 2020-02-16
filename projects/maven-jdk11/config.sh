@@ -9,7 +9,7 @@ CONTAINER_PROJECT="maven"
 BASE_IMAGE="opennms/openjdk"
 JDK_VERSION="11.0.5.10"
 MAVEN_VERSION="3.6.2"
-BASE_IMAGE_VERSION="${JDK_VERSION}-b3108"
+BASE_IMAGE_VERSION="${JDK_VERSION}-b3737"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
 # Version information
