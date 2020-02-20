@@ -13,7 +13,7 @@ RUN wget -qO- ${REPO_KEY_URL} | apt-key add - && \
     echo "deb https://${REPO_HOST} ${REPO_RELEASE} main" > /etc/apt/sources.list.d/opennms.list && \
     wget -qO- https://download.docker.com/linux/debian/gpg | apt-key add - && \
     echo "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list && \
-    echo "deb https://deb.nodesource.com/node_10.x stretch main" > /etc/apt/sources.list.d/nodesource.list && \
+    echo "deb https://deb.nodesource.com/node_11.x stretch main" > /etc/apt/sources.list.d/nodesource.list && \
     wget -qO- https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
 
 ARG PACKAGES="nodejs autoconf automake build-essential cmake curl debhelper devscripts dh-systemd docker-ce dpkg-sig expect git librrd-dev libtool make nsis po-debconf python python3 rsync shellcheck ssh thin-provisioning-tools"
