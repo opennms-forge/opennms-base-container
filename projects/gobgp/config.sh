@@ -4,10 +4,10 @@
 
 # Base Image Dependency
 BASE_IMAGE="opennms/centos"
-BASE_IMAGE_VERSION="8-b3697"
+BASE_IMAGE_VERSION="8-b4056"
 
 # Version information
-VERSION="2.13.0"
+VERSION="2.16.0"
 CONFD_URL=https://github.com/osrg/gobgp/releases/download/v${VERSION}/gobgp_${VERSION}_linux_amd64.tar.gz
 IMAGE_VERSION=("${VERSION}")
 

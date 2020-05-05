@@ -4,7 +4,7 @@
 
 # Configure base image dependency
 BASE_IMAGE="opennms/centos"
-BASE_IMAGE_VERSION="8-b3697"
+BASE_IMAGE_VERSION="8-b4056"
 
 MAJOR_VERSION="0"
 VERSION="${MAJOR_VERSION}.16.0"
