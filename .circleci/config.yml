@@ -157,6 +157,10 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/snapcraft
 
+  yum-repo:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/yum-repo
+
 workflows:
   version: 2
   container_build:
@@ -269,3 +273,7 @@ workflows:
       - snapcraft:
           requires:
             - shellcheck
+      - yum-repo:
+          requires:
+            - shellcheck
+            
