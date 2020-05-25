@@ -10,6 +10,7 @@ BASE_IMAGE="opennms/openjdk"
 BASE_IMAGE_VERSION="debian-jdk8-jdk11-openj9-b3481"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 SHELLCHECK_VERSION="0.6.0"
+DOCKER_COMPOSE_VERSION="1.25.5"
 
 # Version information
 VERSION="debian-jdk8-jdk11"

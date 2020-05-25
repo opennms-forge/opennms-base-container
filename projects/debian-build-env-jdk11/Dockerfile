@@ -8,6 +8,7 @@ SHELL ["/bin/bash", "-c"]
 ARG REPO_HOST="debian.opennms.org"
 ARG REPO_RELEASE="stable"
 ARG REPO_KEY_URL="https://${REPO_HOST}/OPENNMS-GPG-KEY"
+ARG DOCKER_COMPOSE_VERSION="1.25.5"
 
 RUN wget -qO- ${REPO_KEY_URL} | apt-key add - && \
     echo "deb https://${REPO_HOST} ${REPO_RELEASE} main" > /etc/apt/sources.list.d/opennms.list && \
@@ -22,6 +23,8 @@ COPY ./debs /tmp/debs
 
 RUN apt-get update && \
     apt-get -y --no-install-recommends install ${PACKAGES} && \
+    curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose && \
+    chmod +x /usr/local/bin/docker-compose && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

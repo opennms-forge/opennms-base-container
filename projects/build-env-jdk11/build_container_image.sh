@@ -20,6 +20,7 @@ docker build -t "${CONTAINER_PROJECT}:${IMAGE_VERSION[0]}" \
   --build-arg BUILD_URL="${CIRCLE_BUILD_URL}" \
   --build-arg BUILD_BRANCH="${CIRCLE_BRANCH}" \
   --build-arg SHELLCHECK_VERSION="${SHELLCHECK_VERSION}" \
+  --build-arg DOCKER_COMPOSE_VERSION="${DOCKER_COMPOSE_VERSION}" \
   --build-arg PACKAGES="${PACKAGES}" \
   --build-arg REPO_RELEASE="bleeding" \
   --build-arg REPO_HOST="${REPO_HOST}" \

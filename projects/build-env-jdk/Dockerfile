@@ -13,6 +13,7 @@ ARG ADD_RPMS="https://${REPO_HOST}/repofiles/opennms-repo-${REPO_RELEASE}-rhel8.
 ARG PACKAGES="nodejs python2 python3 libxslt rsync gettext tree wget git-core openssh-clients which expect make cmake gcc-c++ jq rrdtool-devel automake libtool rpm-build redhat-rpm-config R-core jicmp jicmp6 jrrd2"
 
 ARG SHELLCHECK_VERSION="0.6.0"
+ARG DOCKER_COMPOSE_VERSION="1.25.5"
 
 COPY ./rpms /tmp/rpms
 
@@ -33,6 +34,8 @@ RUN dnf -y install yum-utils device-mapper-persistent-data lvm2 && \
     dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo && \
     dnf -y install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm && \
     dnf -y install docker-ce docker-ce-cli && \
+    curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose && \
+    chmod +x /usr/local/bin/docker-compose && \
     dnf clean all && \
     rm -rf /var/cache/yum
 RUN if [ "$(ls -1 /tmp/rpms/*.rpm 2>/dev/null | wc -l)" != 0 ]; then cd /tmp/rpms && yum -y localinstall *.rpm; fi && \
