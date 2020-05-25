@@ -2,7 +2,7 @@
 
 set -x
 
-# shellcheck source=projects/debian-build-env-jdk/config.sh
+# shellcheck source=projects/debian-build-env-jdk11/config.sh
 source ./config.sh
 
 # shellcheck source=projects/registry-config.sh
