@@ -73,10 +73,6 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/openjdk-11
 
-  openjdk:
-    <<: *common_environment
-    working_directory: ~/opennms-container/projects/openjdk
-
   maven-jdk8:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/maven-jdk8
@@ -84,10 +80,6 @@ jobs:
   maven-jdk11:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/maven-jdk11
-
-  maven-jdk:
-    <<: *common_environment
-    working_directory: ~/opennms-container/projects/maven-jdk
 
   netlify-cli:
     <<: *common_environment
@@ -117,10 +109,6 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/build-env-jdk11
 
-  build-env-jdk:
-    <<: *common_environment
-    working_directory: ~/opennms-container/projects/build-env-jdk
-
   tomcat:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/tomcat
@@ -137,10 +125,6 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/debian-openjdk-11
 
-  debian-openjdk:
-    <<: *common_environment
-    working_directory: ~/opennms-container/projects/debian-openjdk
-
   debian-build-env-jdk8:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/debian-build-env-jdk8
@@ -148,10 +132,6 @@ jobs:
   debian-build-env-jdk11:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/debian-build-env-jdk11
-
-  debian-build-env-jdk:
-    <<: *common_environment
-    working_directory: ~/opennms-container/projects/debian-build-env-jdk
 
   snapcraft:
     <<: *common_environment
@@ -200,10 +180,6 @@ workflows:
           requires:
             - shellcheck
             - centos
-      - openjdk:
-          requires:
-            - shellcheck
-            - centos
       - maven-jdk8:
           requires:
             - shellcheck
@@ -212,10 +188,6 @@ workflows:
           requires:
             - shellcheck
             - openjdk-11
-      - maven-jdk:
-          requires:
-            - shellcheck
-            - openjdk
       - netlify-cli:
           requires:
             - shellcheck
@@ -239,10 +211,6 @@ workflows:
           requires:
             - shellcheck
             - maven-jdk11
-      - build-env-jdk:
-          requires:
-            - shellcheck
-            - maven-jdk
       - debian:
           requires:
             - shellcheck
@@ -254,10 +222,6 @@ workflows:
           requires:
             - shellcheck
             - debian
-      - debian-openjdk:
-          requires:
-            - shellcheck
-            - debian
       - debian-build-env-jdk8:
           requires:
             - shellcheck
@@ -266,10 +230,6 @@ workflows:
           requires:
             - shellcheck
             - debian-openjdk-11
-      - debian-build-env-jdk:
-          requires:
-            - shellcheck
-            - debian-openjdk
       - snapcraft:
           requires:
             - shellcheck
