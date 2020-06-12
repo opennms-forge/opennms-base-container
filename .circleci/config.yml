@@ -141,6 +141,10 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/yum-repo
 
+  gns3-horizon:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/gns3-horizon
+
   gns3-minion:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/gns3-minion
@@ -240,8 +244,9 @@ workflows:
       - yum-repo:
           requires:
             - shellcheck
+      - gns3-horizon:
+          requires:
+            - shellcheck
       - gns3-minion:
           requires:
             - shellcheck
-
-            
