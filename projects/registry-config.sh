@@ -2,9 +2,11 @@
 
 # shellcheck disable=SC2034
 
+CONTAINER_DIR="$(basename "$(pwd)")"
+
 # Fallback set container project to working directory
 if [ -z "${CONTAINER_PROJECT}" ]; then
-  CONTAINER_PROJECT="$(basename "$(pwd)")"
+  CONTAINER_PROJECT="${CONTAINER_DIR}"
 fi
 
 # Container registry and tags
@@ -19,9 +21,10 @@ CONTAINER_IMAGE="images/image.oci"
 # we got a specific build from CIRCLECI; save our
 # version to the `.circleci/build-numbers` directory
 if [ "${#IMAGE_VERSION[@]}" -gt 1 ]; then
+  _output_file="${CONTAINER_DIR}"
   _image_version="${IMAGE_VERSION[${#IMAGE_VERSION[@]}-1]}"
-  echo "project has a specific build image set, saving to build-numbers/${CONTAINER_PROJECT}: ${_image_version}"
-  echo "BASE_IMAGE_VERSION=${_image_version}" > "../../.circleci/build-numbers/${CONTAINER_PROJECT}"
+  echo "project has a specific build image set, saving to build-numbers/${_output_file}: ${_image_version}"
+  echo "BASE_IMAGE_VERSION=${_image_version}" > "../../.circleci/build-numbers/${_output_file}"
 fi
 
 # if the parent build left a file in the `.circleci/build-numbers`
