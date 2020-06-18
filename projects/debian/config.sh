@@ -4,7 +4,7 @@
 
 # Configure base image dependency
 BASE_IMAGE="debian"
-VERSION="buster"
+VERSION="stretch"
 BASE_IMAGE_VERSION="${VERSION}"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 IMAGE_VERSION=("${VERSION}")
