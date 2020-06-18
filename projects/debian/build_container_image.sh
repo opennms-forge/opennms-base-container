@@ -2,10 +2,10 @@
 
 set -x
 
-# shellcheck source=projects/centos/config.sh
+# shellcheck disable=SC1091
 source ./config.sh
 
-# shellcheck source=projects/registry-config.sh
+# shellcheck disable=SC1091
 source ../registry-config.sh
 
 docker build -t "${CONTAINER_PROJECT}:${IMAGE_VERSION[0]}" \
