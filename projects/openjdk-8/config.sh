@@ -10,6 +10,9 @@ BASE_IMAGE="opennms/centos"
 BASE_IMAGE_VERSION="8-b4056"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
+# inherit $BASE_IMAGE_VERSION
+PARENT_PROJECT="centos"
+
 # Specific container config
 JDK_MAJOR_VERSION="1.8.0"
 JDK_VERSION_DETAIL="${JDK_MAJOR_VERSION}.252.b09"

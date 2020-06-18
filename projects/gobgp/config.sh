@@ -6,6 +6,9 @@
 BASE_IMAGE="opennms/centos"
 BASE_IMAGE_VERSION="8-b4056"
 
+# inherit $BASE_IMAGE_VERSION
+PARENT_PROJECT="centos"
+
 # Version information
 VERSION="2.16.0"
 CONFD_URL=https://github.com/osrg/gobgp/releases/download/v${VERSION}/gobgp_${VERSION}_linux_amd64.tar.gz

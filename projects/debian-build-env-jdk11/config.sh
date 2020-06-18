@@ -12,6 +12,9 @@ BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 SHELLCHECK_VERSION="0.6.0"
 DOCKER_COMPOSE_VERSION="1.25.5"
 
+# inherit $BASE_IMAGE_VERSION
+PARENT_PROJECT="debian-openjdk-11"
+
 # Version information
 VERSION="debian-jdk11"
 IMAGE_VERSION=("${VERSION}")

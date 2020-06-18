@@ -6,6 +6,9 @@
 BASE_IMAGE="opennms/centos"
 BASE_IMAGE_VERSION="8-b4056"
 
+# inherit $BASE_IMAGE_VERSION
+PARENT_PROJECT="centos"
+
 MAJOR_VERSION="0"
 VERSION="${MAJOR_VERSION}.16.0"
 CONFD_URL="https://github.com/kelseyhightower/confd/releases/download/v${VERSION}/confd-${VERSION}-linux-amd64"

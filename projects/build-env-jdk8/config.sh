@@ -14,6 +14,9 @@ BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 SHELLCHECK_VERSION="0.6.0"
 DOCKER_COMPOSE_VERSION="1.25.5"
 
+# inherit $BASE_IMAGE_VERSION
+PARENT_PROJECT="maven-jdk8"
+
 # Version information
 VERSION="${JDK_VERSION}-${MAVEN_VERSION}"
 IMAGE_VERSION=("${VERSION}")

@@ -11,6 +11,9 @@ BASE_IMAGE_VERSION="stretch-b4955"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 SHORT_DATE="$(date -u +"%Y%m%d%H%M%S")"
 
+# inherit $BASE_IMAGE_VERSION
+PARENT_PROJECT="debian"
+
 #VM_TYPE="openj9"
 
 #IMAGE_VERSION=("debian-jdk11-${VM_TYPE}")

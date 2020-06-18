@@ -12,6 +12,9 @@ MAVEN_VERSION="3.6.3"
 BASE_IMAGE_VERSION="${JDK_VERSION}-b4094"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
+# inherit $BASE_IMAGE_VERSION
+PARENT_PROJECT="openjdk-8"
+
 # Version information
 VERSION="${JDK_VERSION}-${MAVEN_VERSION}"
 IMAGE_VERSION=("${VERSION}")
