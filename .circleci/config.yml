@@ -18,7 +18,13 @@ aliases:
     - setup_remote_docker
     - run: apk add --no-cache bash
     - run: *registry_login
+    - attach_workspace:
+        at: ~/
     - run: *build_container
+    - persist_to_workspace:
+        root: ~/
+        paths:
+          - project/.circleci/build-numbers
     - store_artifacts:
         path: images/image.oci
   - &common_environment
