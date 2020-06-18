@@ -5,12 +5,10 @@ FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
 ARG VM_TYPE=openj9
 
-RUN apt-get -y update && \
-    apt-get -y --no-install-recommends install apt-transport-https ca-certificates gnupg2 wget && \
-    wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add - && \
-    add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ && \
+RUN mkdir -p /usr/share/man/man1 && \
     apt-get update && \
-    apt-get -y --no-install-recommends install adoptopenjdk-11-${VM_TYPE} && \
+    apt-get -y --no-install-recommends install apt-transport-https ca-certificates gnupg2 wget && \
+    apt-get -y --no-install-recommends -t stretch-backports install openjdk-11-jdk-headless && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -36,4 +34,4 @@ LABEL org.opencontainers.image.created="${BUILD_DATE}" \
       org.opennms.cicd.buildurl="${BUILD_URL}" \
       org.opennms.cicd.branch="${BUILD_BRANCH}"
 
-ENV JAVA_HOME /usr/lib/jvm/adoptopenjdk-11-${VM_TYPE}-amd64
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
