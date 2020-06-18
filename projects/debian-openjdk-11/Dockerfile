@@ -8,7 +8,7 @@ ARG VM_TYPE=openj9
 RUN mkdir -p /usr/share/man/man1 && \
     apt-get update && \
     apt-get -y --no-install-recommends install apt-transport-https ca-certificates gnupg2 wget && \
-    apt-get -y --no-install-recommends -t stretch-backports install openjdk-11-jdk-headless && \
+    apt-get -y --no-install-recommends -t stretch-backports install openjdk-11-jdk && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
