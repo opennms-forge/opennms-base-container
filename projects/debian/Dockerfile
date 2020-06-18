@@ -8,7 +8,8 @@ ARG VERSION=${BASE_IMAGE_VERSION}
 
 ARG PACKAGES="software-properties-common"
 
-RUN apt-get update && \
+RUN echo "deb http://deb.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/backports.list && \
+    apt-get update && \
     apt-get -u -y dist-upgrade && \
     apt-get -y --no-install-recommends install ${PACKAGES} && \
     apt-get clean && \
