@@ -24,7 +24,7 @@ aliases:
     - persist_to_workspace:
         root: ~/
         paths:
-          - project/.circleci/build-numbers
+          - opennms-container/.circleci/build-numbers
     - store_artifacts:
         path: images/image.oci
   - &common_environment
