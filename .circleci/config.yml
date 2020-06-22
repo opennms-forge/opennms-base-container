@@ -91,10 +91,6 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/netlify-cli
 
-  package-cloud-cli:
-    <<: *common_environment
-    working_directory: ~/opennms-container/projects/package-cloud-cli
-
   ghr:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/ghr
@@ -203,9 +199,6 @@ workflows:
             - shellcheck
             - openjdk-11
       - netlify-cli:
-          requires:
-            - shellcheck
-      - package-cloud-cli:
           requires:
             - shellcheck
       - ghr:
