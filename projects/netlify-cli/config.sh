@@ -4,11 +4,14 @@
 
 # Base Image Dependency
 BASE_IMAGE="node"
-BASE_IMAGE_VERSION="11-alpine"
+BASE_IMAGE_VERSION="lts-alpine3.12"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
 # Version information
-VERSION="2.8.3"
-BUILD_NUMBER="b1"
+VERSION="2.54.0"
+IMAGE_VERSION=("${VERSION}")
 
-IMAGE_VERSION="${VERSION}-${BUILD_NUMBER}"
+# Most specific tag when it is not build locally and in CircleCI
+if [ -n "${CIRCLE_BUILD_NUM}" ]; then
+  IMAGE_VERSION+=("${VERSION}-b${CIRCLE_BUILD_NUM}")
+fi

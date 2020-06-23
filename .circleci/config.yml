@@ -34,7 +34,7 @@ aliases:
 jobs:
   shellcheck:
     docker:
-      - image: opennms/shellcheck:0.5.0-b1
+      - image: koalaman/shellcheck-alpine:v0.7.1
     steps:
       - checkout
       - run:
@@ -91,10 +91,6 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/netlify-cli
 
-  package-cloud-cli:
-    <<: *common_environment
-    working_directory: ~/opennms-container/projects/package-cloud-cli
-
   ghr:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/ghr
@@ -102,10 +98,6 @@ jobs:
   gulp:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/gulp
-
-  shellcheck-image:
-    <<: *common_environment
-    working_directory: ~/opennms-container/projects/shellcheck
 
   build-env-jdk8:
     <<: *common_environment
@@ -205,16 +197,10 @@ workflows:
       - netlify-cli:
           requires:
             - shellcheck
-      - package-cloud-cli:
-          requires:
-            - shellcheck
       - ghr:
           requires:
             - shellcheck
       - gulp:
-          requires:
-            - shellcheck
-      - shellcheck-image:
           requires:
             - shellcheck
       - build-env-jdk8:
