@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-set -x
+set +x
 
 # shellcheck source=projects/net-snmp/config.sh
 source ./config.sh
