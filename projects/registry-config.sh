@@ -29,7 +29,7 @@ fi
 
 # if the parent build left a file in the `.circleci/build-numbers`
 # directory, source it to override the current $BASE_IMAGE_VERSION
-if [ -n "$PARENT_PROJECT" ]; then
+if [ -n "$PARENT_PROJECT" ] && [ -e "../../.circleci/build-numbers/${PARENT_PROJECT}" ]; then
   echo "found a parent project for this build: ${PARENT_PROJECT}"
   echo "BASE_IMAGE_VERSION (before): $BASE_IMAGE_VERSION"
   # shellcheck disable=SC1090
