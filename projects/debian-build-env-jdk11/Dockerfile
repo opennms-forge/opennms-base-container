@@ -17,7 +17,35 @@ RUN wget -qO- ${REPO_KEY_URL} | apt-key add - && \
     echo "deb https://deb.nodesource.com/node_11.x stretch main" > /etc/apt/sources.list.d/nodesource.list && \
     wget -qO- https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
 
-ARG PACKAGES="nodejs autoconf automake build-essential cmake curl debhelper debsigs devscripts dh-systemd docker-ce dpkg-sig expect git librrd-dev libtool make nsis po-debconf python python3 rsync shellcheck ssh thin-provisioning-tools"
+ARG PACKAGES="\
+  autoconf \
+  automake \
+  build-essential \
+  cmake \
+  curl \
+  debhelper \
+  debsigs \
+  devscripts \
+  dh-systemd \
+  docker-ce \
+  dpkg-sig \
+  expect \
+  git \
+  gnupg2 \
+  librrd-dev \
+  libtool \
+  make \
+  nodejs \
+  nsis \
+  po-debconf \
+  python \
+  python3 \
+  rsync \
+  shellcheck \
+  ssh \
+  sudo \
+  thin-provisioning-tools \
+"
 
 COPY ./debs /tmp/debs
 
