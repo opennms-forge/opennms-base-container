@@ -54,7 +54,7 @@ RUN dnf -y install epel-release dnf-plugins-core && \
     dnf -y install ${PACKAGES} && \
     dnf clean all && \
     rm -rf /var/cache/yum
-RUN wget -qO- "https://storage.googleapis.com/shellcheck/shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz" | tar -xJv && \
+RUN wget -qO- "https://github.com/koalaman/shellcheck/releases/download/v${SHELLCHECK_VERSION}/shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz" | tar -xJv && \
     mv shellcheck-"v${SHELLCHECK_VERSION}"/shellcheck /usr/bin/ && \
     rm -rf shellcheck-*
 RUN dnf -y install yum-utils device-mapper-persistent-data lvm2 && \
