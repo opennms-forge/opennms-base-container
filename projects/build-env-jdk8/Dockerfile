@@ -10,6 +10,7 @@ ARG REPO_KEY_URL="https://${REPO_HOST}/OPENNMS-GPG-KEY"
 ARG ADD_RPMS="https://${REPO_HOST}/repofiles/opennms-repo-${REPO_RELEASE}-rhel8.noarch.rpm \
               https://${REPO_HOST}/${REPO_RELEASE}/rhel7/nsis/mingw32-nsis-2.50-1.el7.centos.x86_64.rpm"
 
+# IF YOU EDIT THIS, MAKE SURE YOU EDIT config.sh TOO!
 ARG PACKAGES="\
 	automake \
 	cmake \
