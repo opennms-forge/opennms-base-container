@@ -2,7 +2,7 @@
 
 set -x
 
-# shellcheck source=projects/net-snmp/config.sh
+# shellcheck source=projects/gobgp/config.sh
 source ./config.sh
 
 # shellcheck source=projects/registry-config.sh

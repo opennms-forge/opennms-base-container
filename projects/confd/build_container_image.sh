@@ -2,7 +2,7 @@
 
 set -x
 
-# shellcheck source=projects/centos/config.sh
+# shellcheck source=projects/confd/config.sh
 source ./config.sh
 
 # shellcheck source=projects/registry-config.sh

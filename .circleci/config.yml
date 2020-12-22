@@ -4,7 +4,7 @@ defaults: &defaults
 
 aliases:
   - &docker_environment
-    - image: docker:18.06.0-ce-git
+    - image: docker:20-git
   - &checkout
     path: ~/opennms-container
   - &build_container
