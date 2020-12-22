@@ -4,7 +4,7 @@
 
 # Base Image Dependency
 BASE_IMAGE="opennms/centos"
-BASE_IMAGE_VERSION="8-b4056"
+BASE_IMAGE_VERSION="8-b5649"
 
 # inherit $BASE_IMAGE_VERSION
 PARENT_PROJECT="centos"
