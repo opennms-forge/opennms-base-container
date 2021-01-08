@@ -15,7 +15,7 @@ PARENT_PROJECT="centos"
 
 # Specific container config
 JDK_MAJOR_VERSION="1.8.0"
-JDK_VERSION_DETAIL="${JDK_MAJOR_VERSION}.272.b10"
+JDK_VERSION_DETAIL="${JDK_MAJOR_VERSION}.275.b01"
 IMAGE_VERSION=("${JDK_VERSION_DETAIL}")
 
 # Most specific tag when it is not build locally and in CircleCI
