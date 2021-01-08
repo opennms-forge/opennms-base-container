@@ -163,7 +163,6 @@ workflows:
             - shellcheck
       - confd:
           requires:
-            - shellcheck
             - centos
       - net-snmp:
           requires:
@@ -176,23 +175,18 @@ workflows:
             - shellcheck
       - gobgp:
           requires:
-            - shellcheck
             - centos
       - openjdk-8:
           requires:
-            - shellcheck
             - centos
       - openjdk-11:
           requires:
-            - shellcheck
             - centos
       - maven-jdk8:
           requires:
-            - shellcheck
             - openjdk-8
       - maven-jdk11:
           requires:
-            - shellcheck
             - openjdk-11
       - netlify-cli:
           requires:
@@ -205,30 +199,24 @@ workflows:
             - shellcheck
       - build-env-jdk8:
           requires:
-            - shellcheck
             - maven-jdk8
       - build-env-jdk11:
           requires:
-            - shellcheck
             - maven-jdk11
       - debian:
           requires:
             - shellcheck
       - debian-openjdk-8:
           requires:
-            - shellcheck
             - debian
       - debian-openjdk-11:
           requires:
-            - shellcheck
             - debian
       - debian-build-env-jdk8:
           requires:
-            - shellcheck
             - debian-openjdk-8
       - debian-build-env-jdk11:
           requires:
-            - shellcheck
             - debian-openjdk-11
       - snapcraft:
           requires:
