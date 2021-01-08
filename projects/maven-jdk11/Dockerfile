@@ -13,7 +13,10 @@ ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${MAVEN_HO
 
 WORKDIR /opt
 
-RUN curl ${MAVEN_URL} | tar xz
+RUN curl ${MAVEN_URL} | tar xz && \
+    dnf -y --nodocs install make && \
+    dnf clean all && \
+    rm -rf /var/cache/yum
 
 ARG BUILD_DATE="1970-01-01T00:00:00+0000"
 ARG SOURCE
