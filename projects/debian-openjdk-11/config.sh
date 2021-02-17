@@ -7,7 +7,7 @@ CONTAINER_PROJECT="openjdk"
 
 # Base Image Dependency
 BASE_IMAGE="opennms/debian"
-BASE_IMAGE_VERSION="stretch-b5775"
+BASE_IMAGE_VERSION="buster-b6101"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 SHORT_DATE="$(date -u +"%Y%m%d%H%M%S")"
 

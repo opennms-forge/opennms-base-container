@@ -1,11 +1,10 @@
 ARG BASE_IMAGE="debian"
-ARG BASE_IMAGE_VERSION="stretch"
+ARG BASE_IMAGE_VERSION="buster"
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
 RUN apt-get update && \
-    apt-get -y --no-install-recommends install apt-transport-https ca-certificates gnupg2 wget && \
-    apt-get -y --no-install-recommends -t stretch-backports install openjdk-11-jdk && \
+    apt-get -y --no-install-recommends install apt-transport-https ca-certificates gnupg2 wget openjdk-11-jdk && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
