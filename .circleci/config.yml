@@ -51,6 +51,10 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/ubuntu
 
+  antora:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/antora
+
   confd:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/confd
@@ -159,6 +163,9 @@ workflows:
           requires:
             - shellcheck
       - ubuntu:
+          requires:
+            - shellcheck
+      - antora:
           requires:
             - shellcheck
       - confd:
