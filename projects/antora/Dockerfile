@@ -5,7 +5,7 @@ FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
 ARG VERSION="latest"
 
-RUN apk --no-cache add make git openssh-client && \
+RUN apk --no-cache add bash make git openssh-client && \
     npm i -g gitlab:antora/xref-validator && \
     npm i -g antora-site-generator-lunr
 
