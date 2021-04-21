@@ -16,7 +16,7 @@ aliases:
       docker login -u ${CONTAINER_REGISTRY_LOGIN} -p ${CONTAINER_REGISTRY_PASS}
       KEY_FOLDER=~/.docker/trust/private
       mkdir -p $KEY_FOLDER
-      echo $DELEGATE_PRIVATE_KEY | base64 > $KEY_FOLDER/$DELEGATE_PRIVATE_KEY_NAME.key
+      echo "$DELEGATE_PRIVATE_KEY" | base64 --decode > $KEY_FOLDER/$DELEGATE_PRIVATE_KEY_NAME.key
       chmod 600 $KEY_FOLDER/*
       export DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE="$DELEGATE_PRIVATE_KEY_PASSPHRASE"
       docker trust key load $KEY_FOLDER/$DELEGATE_PRIVATE_KEY_NAME.key
