@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=opennms/openjdk
+ARG BASE_IMAGE=opennmsdcttest/openjdk
 ARG BASE_IMAGE_VERSION="11.0.4.11"
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}

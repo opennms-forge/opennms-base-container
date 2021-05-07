@@ -164,111 +164,111 @@ workflows:
   container_build:
     jobs:
       - shellcheck
-      - tomcat:
-          context: "build-context"
-          requires:
-            - shellcheck
+#      - tomcat:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
       - centos:
           context: "build-context"
           requires:
             - shellcheck
-      - ubuntu:
-          context: "build-context"
-          requires:
-            - shellcheck
-      - antora:
-          context: "build-context"
-          requires:
-            - shellcheck
-      - confd:
-          context: "build-context"
-          requires:
-            - centos
-      - net-snmp:
-          context: "build-context"
-          requires:
-            - shellcheck
-      - isc-dhcp:
-          context: "build-context"
-          requires:
-            - shellcheck
-      - mini-mail:
-          context: "build-context"
-          requires:
-            - shellcheck
-      - gobgp:
-          context: "build-context"
-          requires:
-            - centos
-      - openjdk-8:
-          context: "build-context"
-          requires:
-            - centos
+#      - ubuntu:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - antora:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - confd:
+#          context: "build-context"
+#          requires:
+#            - centos
+#      - net-snmp:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - isc-dhcp:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - mini-mail:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - gobgp:
+#          context: "build-context"
+#          requires:
+#            - centos
+#      - openjdk-8:
+#          context: "build-context"
+#          requires:
+#            - centos
       - openjdk-11:
           context: "build-context"
           requires:
             - centos
-      - maven-jdk8:
-          context: "build-context"
-          requires:
-            - openjdk-8
+#      - maven-jdk8:
+#          context: "build-context"
+#          requires:
+#            - openjdk-8
       - maven-jdk11:
           context: "build-context"
           requires:
             - openjdk-11
-      - netlify-cli:
-          context: "build-context"
-          requires:
-            - shellcheck
-      - ghr:
-          context: "build-context"
-          requires:
-            - shellcheck
-      - gulp:
-          context: "build-context"
-          requires:
-            - shellcheck
-      - build-env-jdk8:
-          context: "build-context"
-          requires:
-            - maven-jdk8
-      - build-env-jdk11:
-          context: "build-context"
-          requires:
-            - maven-jdk11
-      - debian:
-          context: "build-context"
-          requires:
-            - shellcheck
-      - debian-openjdk-8:
-          context: "build-context"
-          requires:
-            - debian
-      - debian-openjdk-11:
-          context: "build-context"
-          requires:
-            - debian
-      - debian-build-env-jdk8:
-          context: "build-context"
-          requires:
-            - debian-openjdk-8
-      - debian-build-env-jdk11:
-          context: "build-context"
-          requires:
-            - debian-openjdk-11
-      - snapcraft:
-          context: "build-context"
-          requires:
-            - shellcheck
-      - yum-repo:
-          context: "build-context"
-          requires:
-            - shellcheck
-      - gns3-horizon:
-          context: "build-context"
-          requires:
-            - shellcheck
-      - gns3-minion:
-          context: "build-context"
-          requires:
-            - shellcheck
+#      - netlify-cli:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - ghr:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - gulp:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - build-env-jdk8:
+#          context: "build-context"
+#          requires:
+#            - maven-jdk8
+#      - build-env-jdk11:
+#          context: "build-context"
+#          requires:
+#            - maven-jdk11
+#      - debian:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - debian-openjdk-8:
+#          context: "build-context"
+#          requires:
+#            - debian
+#      - debian-openjdk-11:
+#          context: "build-context"
+#          requires:
+#            - debian
+#      - debian-build-env-jdk8:
+#          context: "build-context"
+#          requires:
+#            - debian-openjdk-8
+#      - debian-build-env-jdk11:
+#          context: "build-context"
+#          requires:
+#            - debian-openjdk-11
+#      - snapcraft:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - yum-repo:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - gns3-horizon:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - gns3-minion:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
