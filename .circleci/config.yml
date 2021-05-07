@@ -198,9 +198,11 @@ workflows:
           requires:
             - centos
       - maven-jdk8:
+          context: "build-context"
           requires:
             - openjdk-8
       - maven-jdk11:
+          context: "build-context"
           requires:
             - openjdk-11
       - netlify-cli:
