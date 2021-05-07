@@ -22,5 +22,3 @@ docker build -t "${CONTAINER_PROJECT}:${IMAGE_VERSION[0]}" \
   .
 
 docker image save "${CONTAINER_PROJECT}:${IMAGE_VERSION[0]}" -o "${CONTAINER_IMAGE}"
-
-docker tag "${CONTAINER_PROJECT}:${IMAGE_VERSION[0]}" "opennmsdcttest/${CONTAINER_PROJECT}:${IMAGE_VERSION[0]}-b${CIRCLE_BUILD_NUM}"
