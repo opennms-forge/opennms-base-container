@@ -7,7 +7,7 @@ CONTAINER_PROJECT="openjdk"
 
 # Base Image Dependency
 BASE_IMAGE="opennmsdcttest/centos"
-BASE_IMAGE_VERSION="8-b5649"
+BASE_IMAGE_VERSION="8-b6457"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
 # inherit $BASE_IMAGE_VERSION
