@@ -18,12 +18,12 @@ found_changes() {
   return 1
 }
 
-echo "Detect changes in projects"
-if found_changes; then
+#echo "Detect changes in projects"
+# if found_changes; then
   ./build_container_image.sh && \
   ~/opennms-container/.circleci/tag.sh && \
   ~/opennms-container/.circleci/publish.sh
-else
-  echo "No changes detected"
-  exit 0
-fi
+#else
+#  echo "No changes detected"
+#  exit 0
+#fi
