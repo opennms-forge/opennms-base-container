@@ -18,6 +18,9 @@ found_changes() {
   return 1
 }
 
+export CONTAINER_REGISTRY="docker.io"
+export CONTAINER_REGISTRY_REPO="swachter"
+
 #echo "Detect changes in projects"
 # if found_changes; then
   ./build_container_image.sh && \
