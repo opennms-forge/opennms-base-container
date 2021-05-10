@@ -13,6 +13,8 @@ aliases:
   - &registry_login
     name: Login Container Registry
     command: |
+      export CONTAINER_REGISTRY="docker.io"
+      export CONTAINER_REGISTRY_REPO="swachter"
       docker login -u ${CONTAINER_REGISTRY_LOGIN} -p ${CONTAINER_REGISTRY_PASS}
       KEY_FOLDER=~/.docker/trust/private
       mkdir -p $KEY_FOLDER

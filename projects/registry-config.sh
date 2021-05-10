@@ -10,8 +10,6 @@ if [ -z "${CONTAINER_PROJECT}" ]; then
 fi
 
 # Container registry and tags
-CONTAINER_REGISTRY="docker.io"
-CONTAINER_REGISTRY_REPO="opennmsdcttest"
 CONTAINER_VERSION_TAGS=${IMAGE_VERSION[*]}
 
 # Container Image Artifact

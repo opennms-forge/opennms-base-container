@@ -2,7 +2,7 @@
 
 # shellcheck disable=SC2034
 
-CONTAINER_PROJECT="centos2"
+CONTAINER_PROJECT="centos"
 
 # Configure base image dependency
 BASE_IMAGE="centos"
