@@ -49,7 +49,7 @@ aliases:
   - &common_environment
     docker: *docker_environment
     steps: *common_steps
-    shell: /bin/sh -leo pipefail
+    shell: /bin/bash -leo pipefail
 
 jobs:
   shellcheck:
