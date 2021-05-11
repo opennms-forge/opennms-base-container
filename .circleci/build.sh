@@ -25,7 +25,7 @@ env | grep DOCKER
 
 #echo "Detect changes in projects"
 # if found_changes; then
-  export DOCKER_CONTENT_TRUST=0 && ./build_container_image.sh && export DOCKER_CONTENT_TRUST=1 \
+  ./build_container_image.sh \
   ~/opennms-container/.circleci/tag.sh && \
   ~/opennms-container/.circleci/publish.sh
 #else
