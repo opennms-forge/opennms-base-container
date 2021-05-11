@@ -18,7 +18,10 @@ found_changes() {
   return 1
 }
 
-export CONTAINER_REGISTRY="docker.io"
+echo "BASH_ENV: $BASH_ENV"
+cat $BASH_ENV
+env | grep CONTAINER
+env | grep DOCKER
 
 #echo "Detect changes in projects"
 # if found_changes; then
