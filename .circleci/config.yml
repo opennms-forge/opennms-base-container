@@ -47,6 +47,7 @@ aliases:
   - &common_environment
     docker: *docker_environment
     steps: *common_steps
+    shell: /bin/sh -leo pipefail
 
 jobs:
   shellcheck:
