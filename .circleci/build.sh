@@ -19,7 +19,7 @@ found_changes() {
 }
 
 echo "BASH_ENV: $BASH_ENV"
-cat $BASH_ENV
+cat ""$BASH_ENV""
 env | grep CONTAINER
 env | grep DOCKER
 
