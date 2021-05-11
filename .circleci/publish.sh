@@ -9,9 +9,6 @@ source ../registry-config.sh
 
 #if [ "${CIRCLE_BRANCH}" == "master" ]; then
 #  echo "Publish images for master branch ..."
-  export DOCKER_CONTENT_TRUST=1
-  export DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE="$DELEGATE_PRIVATE_KEY_PASSPHRASE"
-
   for TAG in ${CONTAINER_VERSION_TAGS[*]}; do
     docker push "${CONTAINER_REGISTRY}/${CONTAINER_REGISTRY_REPO}/${CONTAINER_PROJECT}:${TAG}"
   done

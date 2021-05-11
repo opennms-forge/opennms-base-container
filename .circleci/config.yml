@@ -18,10 +18,13 @@ aliases:
       mkdir -p $KEY_FOLDER
       echo "$DELEGATE_PRIVATE_KEY" | base64 -d > $KEY_FOLDER/$DELEGATE_PRIVATE_KEY_NAME.key
       chmod 600 $KEY_FOLDER/*
-      export DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE="$DELEGATE_PRIVATE_KEY_PASSPHRASE"
       docker trust key load $KEY_FOLDER/$DELEGATE_PRIVATE_KEY_NAME.key
-      export DOCKER_CONTENT_TRUST=1
   - &common_steps
+    - run:
+      name: Setup Environment Variables
+      command: |
+        echo "export DOCKER_CONTENT_TRUST=1" >> $BASH_ENV
+        echo "export DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE=\"$DELEGATE_PRIVATE_KEY_PASSPHRASE\"" >> $BASH_ENV
     - checkout: *checkout
     - setup_remote_docker
     - run: apk add --no-cache bash
