@@ -20,14 +20,14 @@ aliases:
       chmod 600 $KEY_FOLDER/*
       docker trust key load $KEY_FOLDER/$DELEGATE_PRIVATE_KEY_NAME.key
   - &common_steps
+    - checkout: *checkout
+    - setup_remote_docker
+    - run: apk add --no-cache bash
     - run:
       name: Setup Environment Variables
       command: |
         echo "export DOCKER_CONTENT_TRUST=1" >> $BASH_ENV
         echo "export DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE=\"$DELEGATE_PRIVATE_KEY_PASSPHRASE\"" >> $BASH_ENV
-    - checkout: *checkout
-    - setup_remote_docker
-    - run: apk add --no-cache bash
     - run: *registry_login
     - attach_workspace:
         at: ~/
