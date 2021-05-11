@@ -22,6 +22,7 @@ aliases:
       echo "BASH_ENV: $BASH_ENV"
       cat $BASH_ENV
       echo "SHELL: $SHELL"
+      echo $0
       docker trust key load $KEY_FOLDER/$DELEGATE_PRIVATE_KEY_NAME.key
   - &bash_env
     name: Setup Environment Variables
