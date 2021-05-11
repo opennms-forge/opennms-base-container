@@ -4,8 +4,6 @@ ARG VERSION=${BASE_IMAGE_VERSION}
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
-ARG VERSION=${BASE_IMAGE_VERSION}
-
 RUN dnf -y --nodocs update && \
     dnf clean all && \
     rm -rf /var/cache/yum

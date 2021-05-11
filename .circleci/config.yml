@@ -28,7 +28,7 @@ aliases:
     name: Setup Environment Variables
     command: |
       echo "export CONTAINER_REGISTRY=docker.io" >> $BASH_ENV
-      echo "export CONTAINER_REGISTRY_REPO=opennmsdcttest" >> $BASH_ENV
+      echo "export CONTAINER_REGISTRY_REPO=swachter" >> $BASH_ENV
       echo "export DOCKER_CONTENT_TRUST=1" >> $BASH_ENV
       echo "export DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE=\"$DELEGATE_PRIVATE_KEY_PASSPHRASE\"" >> $BASH_ENV
   - &common_steps
