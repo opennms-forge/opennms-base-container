@@ -12,11 +12,30 @@ aliases:
     command: ~/opennms-container/.circleci/build.sh
   - &registry_login
     name: Login Container Registry
-    command: docker login -u ${CONTAINER_REGISTRY_LOGIN} -p ${CONTAINER_REGISTRY_PASS}
+    command: |
+      docker login -u ${CONTAINER_REGISTRY_LOGIN} -p ${CONTAINER_REGISTRY_PASS}
+      KEY_FOLDER=~/.docker/trust/private
+      mkdir -p $KEY_FOLDER
+      echo "$DELEGATE_PRIVATE_KEY" | base64 -d > $KEY_FOLDER/$DELEGATE_PRIVATE_KEY_NAME.key
+      chmod 600 $KEY_FOLDER/*
+      env | grep DOCKER
+      echo "BASH_ENV: $BASH_ENV"
+      cat $BASH_ENV
+      echo "SHELL: $SHELL"
+      echo $0
+      docker trust key load $KEY_FOLDER/$DELEGATE_PRIVATE_KEY_NAME.key
+  - &bash_env
+    name: Setup Environment Variables
+    command: |
+      echo "export CONTAINER_REGISTRY=docker.io" >> $BASH_ENV
+      echo "export CONTAINER_REGISTRY_REPO=opennmsdcttest" >> $BASH_ENV
+      echo "export DOCKER_CONTENT_TRUST=1" >> $BASH_ENV
+      echo "export DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE=\"$DELEGATE_PRIVATE_KEY_PASSPHRASE\"" >> $BASH_ENV
   - &common_steps
     - checkout: *checkout
     - setup_remote_docker
     - run: apk add --no-cache bash
+    - run: *bash_env
     - run: *registry_login
     - attach_workspace:
         at: ~/
@@ -30,6 +49,10 @@ aliases:
   - &common_environment
     docker: *docker_environment
     steps: *common_steps
+    shell: /bin/sh -leo pipefail
+    environment:
+      - BASH_ENV: /etc/profile
+
 
 jobs:
   shellcheck:
@@ -156,84 +179,111 @@ workflows:
   container_build:
     jobs:
       - shellcheck
-      - tomcat:
-          requires:
-            - shellcheck
+#      - tomcat:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
       - centos:
+          context: "build-context"
           requires:
             - shellcheck
-      - ubuntu:
-          requires:
-            - shellcheck
-      - antora:
-          requires:
-            - shellcheck
-      - confd:
-          requires:
-            - centos
-      - net-snmp:
-          requires:
-            - shellcheck
-      - isc-dhcp:
-          requires:
-            - shellcheck
-      - mini-mail:
-          requires:
-            - shellcheck
-      - gobgp:
-          requires:
-            - centos
-      - openjdk-8:
-          requires:
-            - centos
+#      - ubuntu:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - antora:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - confd:
+#          context: "build-context"
+#          requires:
+#            - centos
+#      - net-snmp:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - isc-dhcp:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - mini-mail:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - gobgp:
+#          context: "build-context"
+#          requires:
+#            - centos
+#      - openjdk-8:
+#          context: "build-context"
+#          requires:
+#            - centos
       - openjdk-11:
+          context: "build-context"
           requires:
             - centos
-      - maven-jdk8:
-          requires:
-            - openjdk-8
+#      - maven-jdk8:
+#          context: "build-context"
+#          requires:
+#            - openjdk-8
       - maven-jdk11:
+          context: "build-context"
           requires:
             - openjdk-11
-      - netlify-cli:
-          requires:
-            - shellcheck
-      - ghr:
-          requires:
-            - shellcheck
-      - gulp:
-          requires:
-            - shellcheck
-      - build-env-jdk8:
-          requires:
-            - maven-jdk8
-      - build-env-jdk11:
-          requires:
-            - maven-jdk11
-      - debian:
-          requires:
-            - shellcheck
-      - debian-openjdk-8:
-          requires:
-            - debian
-      - debian-openjdk-11:
-          requires:
-            - debian
-      - debian-build-env-jdk8:
-          requires:
-            - debian-openjdk-8
-      - debian-build-env-jdk11:
-          requires:
-            - debian-openjdk-11
-      - snapcraft:
-          requires:
-            - shellcheck
-      - yum-repo:
-          requires:
-            - shellcheck
-      - gns3-horizon:
-          requires:
-            - shellcheck
-      - gns3-minion:
-          requires:
-            - shellcheck
+#      - netlify-cli:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - ghr:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - gulp:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - build-env-jdk8:
+#          context: "build-context"
+#          requires:
+#            - maven-jdk8
+#      - build-env-jdk11:
+#          context: "build-context"
+#          requires:
+#            - maven-jdk11
+#      - debian:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - debian-openjdk-8:
+#          context: "build-context"
+#          requires:
+#            - debian
+#      - debian-openjdk-11:
+#          context: "build-context"
+#          requires:
+#            - debian
+#      - debian-build-env-jdk8:
+#          context: "build-context"
+#          requires:
+#            - debian-openjdk-8
+#      - debian-build-env-jdk11:
+#          context: "build-context"
+#          requires:
+#            - debian-openjdk-11
+#      - snapcraft:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - yum-repo:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - gns3-horizon:
+#          context: "build-context"
+#          requires:
+#            - shellcheck
+#      - gns3-minion:
+#          context: "build-context"
+#          requires:
+#            - shellcheck

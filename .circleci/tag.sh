@@ -7,6 +7,8 @@ source ./config.sh
 # shellcheck disable=SC1091
 source ../registry-config.sh
 
+echo "tag for registry/repo"
+
 for TAG in ${CONTAINER_VERSION_TAGS[*]}; do
   docker tag "${CONTAINER_PROJECT}:${IMAGE_VERSION}" "${CONTAINER_REGISTRY}/${CONTAINER_REGISTRY_REPO}/${CONTAINER_PROJECT}:${TAG}"
 done
