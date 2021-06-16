@@ -84,6 +84,10 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/openjdk-11
 
+  openjdk-17:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/openjdk-17
+
   maven-jdk8:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/maven-jdk8
@@ -91,6 +95,10 @@ jobs:
   maven-jdk11:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/maven-jdk11
+
+  maven-jdk17:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/maven-jdk17
 
   netlify-cli:
     <<: *common_environment
@@ -112,6 +120,10 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/build-env-jdk11
 
+  build-env-jdk17:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/build-env-jdk17
+
   tomcat:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/tomcat
@@ -128,6 +140,10 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/debian-openjdk-11
 
+  debian-openjdk-17:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/debian-openjdk-17
+
   debian-build-env-jdk8:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/debian-build-env-jdk8
@@ -135,6 +151,10 @@ jobs:
   debian-build-env-jdk11:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/debian-build-env-jdk11
+
+  debian-build-env-jdk17:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/debian-build-env-jdk17
 
   snapcraft:
     <<: *common_environment
@@ -190,12 +210,18 @@ workflows:
       - openjdk-11:
           requires:
             - centos
+      - openjdk-17:
+          requires:
+            - centos
       - maven-jdk8:
           requires:
             - openjdk-8
       - maven-jdk11:
           requires:
             - openjdk-11
+      - maven-jdk17:
+          requires:
+            - openjdk-17
       - netlify-cli:
           requires:
             - shellcheck
@@ -211,6 +237,9 @@ workflows:
       - build-env-jdk11:
           requires:
             - maven-jdk11
+      - build-env-jdk17:
+          requires:
+            - maven-jdk17
       - debian:
           requires:
             - shellcheck
@@ -220,12 +249,18 @@ workflows:
       - debian-openjdk-11:
           requires:
             - debian
+      - debian-openjdk-17:
+          requires:
+            - debian
       - debian-build-env-jdk8:
           requires:
             - debian-openjdk-8
       - debian-build-env-jdk11:
           requires:
             - debian-openjdk-11
+      - debian-build-env-jdk17:
+          requires:
+            - debian-openjdk-17
       - snapcraft:
           requires:
             - shellcheck
