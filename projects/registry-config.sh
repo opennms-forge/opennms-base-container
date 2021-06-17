@@ -27,12 +27,27 @@ if [ "${#IMAGE_VERSION[@]}" -gt 1 ]; then
   echo "BASE_IMAGE_VERSION=${_image_version}" > "../../.circleci/build-numbers/${_output_file}"
 fi
 
-# if the parent build left a file in the `.circleci/build-numbers`
-# directory, source it to override the current $BASE_IMAGE_VERSION
-if [ -n "$PARENT_PROJECT" ] && [ -e "../../.circleci/build-numbers/${PARENT_PROJECT}" ]; then
-  echo "found a parent project for this build: ${PARENT_PROJECT}"
-  echo "BASE_IMAGE_VERSION (before): $BASE_IMAGE_VERSION"
-  # shellcheck disable=SC1090
-  source "../../.circleci/build-numbers/${PARENT_PROJECT}"
-  echo "BASE_IMAGE_VERSION (after): $BASE_IMAGE_VERSION"
+if [ "${CIRCLE_BRANCH}" == "master" ]; then
+  # if the parent build left a file in the `.circleci/build-numbers`
+  # directory, source it to override the current $BASE_IMAGE_VERSION
+  if [ -n "$PARENT_PROJECT" ] && [ -e "../../.circleci/build-numbers/${PARENT_PROJECT}" ]; then
+    echo "found a parent project for this build: ${PARENT_PROJECT}"
+    echo "BASE_IMAGE_VERSION (before): $BASE_IMAGE_VERSION"
+    # shellcheck disable=SC1090
+    source "../../.circleci/build-numbers/${PARENT_PROJECT}"
+    echo "BASE_IMAGE_VERSION (after): $BASE_IMAGE_VERSION"
+  fi
+else
+  # on non-master branches, we don't publish, so pull in a local copy instead
+  PARENT_IMAGE="../${PARENT_PROJECT}/images/image.oci"
+  if [ -e "${PARENT_IMAGE}" ]; then
+    _output="$(docker image load -i "${PARENT_IMAGE}" | grep 'Loaded image:' | cut -d: -f2- | xargs)"
+    _name="$(echo "${_output}" | cut -d: -f1)"
+    _version="$(echo "${_output}" | cut -d: -f2)"
+    if [ -n "${_name}" ] && [ -n "${_version}" ]; then
+      BASE_IMAGE="${_name}"
+      BASE_IMAGE_VERSION="${_version}"
+    fi
+  fi
 fi
+
