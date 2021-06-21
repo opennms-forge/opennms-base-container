@@ -100,10 +100,6 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/maven-jdk17
 
-  netlify-cli:
-    <<: *common_environment
-    working_directory: ~/opennms-container/projects/netlify-cli
-
   ghr:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/ghr
@@ -222,9 +218,6 @@ workflows:
       - maven-jdk17:
           requires:
             - openjdk-17
-      - netlify-cli:
-          requires:
-            - shellcheck
       - ghr:
           requires:
             - shellcheck
