@@ -4,7 +4,7 @@
 
 # Configure base image dependency
 BASE_IMAGE="ubuntu"
-VERSION="eoan-20200207"
+VERSION="focal-20210609"
 BASE_IMAGE_VERSION="${VERSION}"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 IMAGE_VERSION=("${VERSION}")
@@ -13,4 +13,3 @@ IMAGE_VERSION=("${VERSION}")
 if [ -n "${CIRCLE_BUILD_NUM}" ]; then
   IMAGE_VERSION+=("${VERSION}-b${CIRCLE_BUILD_NUM}")
 fi
-
