@@ -1,11 +1,14 @@
 ARG BASE_IMAGE="debian"
-ARG BASE_IMAGE_VERSION="stretch"
+ARG BASE_IMAGE_VERSION="buster"
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
 RUN apt-get update && \
     apt-get -y --no-install-recommends install apt-transport-https ca-certificates gnupg2 wget && \
-    apt-get -y --no-install-recommends -t stretch-backports install openjdk-8-jdk && \
+    wget -O - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add - && \
+    echo "deb https://adoptopenjdk.jfrog.io/adoptopenjdk/deb buster main" | tee /etc/apt/sources.list.d/adoptopenjdk.list && \
+    apt-get update && \
+    apt-get -y --no-install-recommends install adoptopenjdk-8-hotspot && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -31,4 +34,4 @@ LABEL org.opencontainers.image.created="${BUILD_DATE}" \
       org.opennms.cicd.buildurl="${BUILD_URL}" \
       org.opennms.cicd.branch="${BUILD_BRANCH}"
 
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+ENV JAVA_HOME /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64

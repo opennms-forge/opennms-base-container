@@ -4,14 +4,15 @@ ARG BASE_IMAGE_VERSION="buster"
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
 ARG JDK_MAJOR_VERSION=17
-ARG JDK_BUILD_VERSION=26
+ARG JDK_BUILD_VERSION=35
 ARG JDK_VERSION_DETAIL=${JDK_MAJOR_VERSION}_${JDK_BUILD_VERSION}
+ARG JDK_TARBALL=https://download.java.net/java/GA/jdk17/0d483333a00540d886896bac774ff48b/35/GPL/openjdk-17_linux-x64_bin.tar.gz
 
 RUN apt-get update && \
     apt-get -y --no-install-recommends install apt-transport-https ca-certificates gnupg2 wget && \
     mkdir -p /usr/lib/jvm && \
     wget -v -O /tmp/jdk.tar.gz \
-    "https://download.java.net/java/early_access/jdk${JDK_MAJOR_VERSION}/${JDK_BUILD_VERSION}/GPL/openjdk-${JDK_MAJOR_VERSION}-ea+${JDK_BUILD_VERSION}_linux-x64_bin.tar.gz" && \
+    "${JDK_TARBALL}" && \
     tar -C /usr/lib/jvm -xvzf /tmp/jdk.tar.gz && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
