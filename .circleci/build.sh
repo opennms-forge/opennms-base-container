@@ -3,6 +3,10 @@
 PROJECT="$(basename "$(pwd)")"
 
 found_changes() {
+  if git show --name-only --format='' | grep "^.epoch"; then
+    echo "epoch changed, forcing build"
+    return 0
+  fi
   if git show --name-only --format='' | grep "^projects/registry-config.sh"; then
     echo "registry-config.sh changed, triggering build"
     return 0
