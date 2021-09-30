@@ -8,7 +8,7 @@ SHELL ["/bin/bash", "-c"]
 ARG REPO_HOST="debian.opennms.org"
 ARG REPO_RELEASE="stable"
 ARG REPO_KEY_URL="https://${REPO_HOST}/OPENNMS-GPG-KEY"
-ARG DOCKER_COMPOSE_VERSION="1.25.5"
+ARG DOCKER_COMPOSE_VERSION="1.29.2"
 
 RUN wget -qO- ${REPO_KEY_URL} | apt-key add - && \
     echo "deb https://${REPO_HOST} ${REPO_RELEASE} main" > /etc/apt/sources.list.d/opennms.list && \
