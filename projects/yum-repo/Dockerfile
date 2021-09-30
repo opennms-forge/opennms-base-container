@@ -1,5 +1,5 @@
 ARG BASE_IMAGE="debian"
-ARG BASE_IMAGE_VERSION="stable-slim"
+ARG BASE_IMAGE_VERSION="buster-slim"
 ARG WWW_ROOT="/var/www/rpms"
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
