@@ -3,14 +3,14 @@
 # shellcheck disable=SC2034
 
 # Base Image Dependency
-BASE_IMAGE="opennms/centos"
-BASE_IMAGE_VERSION="8-b5649"
+BASE_IMAGE="opennms/ubuntu"
+BASE_IMAGE_VERSION="focal-20211006-b7334"
 
 # inherit $BASE_IMAGE_VERSION
-PARENT_PROJECT="centos"
+PARENT_PROJECT="ubuntu"
 
 # Version information
-VERSION="2.16.0"
+VERSION="2.33.0"
 CONFD_URL=https://github.com/osrg/gobgp/releases/download/v${VERSION}/gobgp_${VERSION}_linux_amd64.tar.gz
 IMAGE_VERSION=("${VERSION}")
 
