@@ -4,7 +4,7 @@
 
 # Configure base image dependency
 BASE_IMAGE="ubuntu"
-VERSION="focal-20210609"
+VERSION="focal-20211006"
 BASE_IMAGE_VERSION="${VERSION}"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 IMAGE_VERSION=("${VERSION}")
