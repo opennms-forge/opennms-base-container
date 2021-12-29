@@ -4,7 +4,7 @@
 
 # Configure base image dependency
 BASE_IMAGE="antora/antora"
-BASE_IMAGE_VERSION="2.3.4"
+BASE_IMAGE_VERSION="3.0.0"
 VERSION=${BASE_IMAGE_VERSION}
 IMAGE_VERSION=("${VERSION}")
 

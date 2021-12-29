@@ -6,8 +6,8 @@ FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 ARG VERSION="latest"
 
 RUN apk --no-cache add bash make git openssh-client && \
-    npm i -g gitlab:antora/xref-validator && \
-    npm i -g antora-site-generator-lunr
+    yarn global add --ignore-optional --silent "https://gitlab.com/antora/xref-validator/-/archive/v1.0.0-alpha.14/xref-validator-v1.0.0-alpha.14.tar.gz" && \
+    yarn global add --ignore-optional --silent "https://gitlab.com/antora/antora-lunr-extension"
 
 ARG BUILD_DATE="1970-01-01T00:00:00+0000"
 ARG SOURCE
