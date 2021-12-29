@@ -15,7 +15,8 @@ aliases:
     command: docker login -u ${CONTAINER_REGISTRY_LOGIN} -p ${CONTAINER_REGISTRY_PASS}
   - &common_steps
     - checkout: *checkout
-    - setup_remote_docker
+    - setup_remote_docker:
+        version: 20.10.11
     - run: apk add --no-cache bash
     - run: *registry_login
     - attach_workspace:
