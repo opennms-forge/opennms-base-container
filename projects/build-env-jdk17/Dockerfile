@@ -1,5 +1,5 @@
 ARG BASE_IMAGE="opennms/maven"
-ARG BASE_IMAGE_VERSION="17_3.6.3"
+ARG BASE_IMAGE_VERSION="17.0.1_3.8.4"
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
@@ -41,7 +41,7 @@ ARG PACKAGES="\
 	which \
 "
 
-ARG SHELLCHECK_VERSION="0.6.0"
+ARG SHELLCHECK_VERSION="0.8.0"
 ARG DOCKER_COMPOSE_VERSION="1.29.2"
 
 COPY ./rpms /tmp/rpms
@@ -61,7 +61,7 @@ RUN wget -qO- "https://github.com/koalaman/shellcheck/releases/download/v${SHELL
     rm -rf shellcheck-*
 RUN dnf -y install yum-utils device-mapper-persistent-data lvm2 && \
     dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo && \
-    dnf -y install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm && \
+    dnf -y install https://download.docker.com/linux/centos/8/x86_64/stable/Packages/containerd.io-1.4.12-3.1.el8.x86_64.rpm && \
     dnf -y install docker-ce docker-ce-cli && \
     curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose && \
     chmod +x /usr/local/bin/docker-compose && \

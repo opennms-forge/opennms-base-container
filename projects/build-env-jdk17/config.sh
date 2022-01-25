@@ -7,11 +7,11 @@ CONTAINER_PROJECT="build-env"
 
 # Base Image Dependency
 BASE_IMAGE="opennms/maven"
-JDK_VERSION="17_35"
-MAVEN_VERSION="3.6.3"
+JDK_VERSION="17.0.1_12"
+MAVEN_VERSION="3.8.4"
 BASE_IMAGE_VERSION="${JDK_VERSION}-${MAVEN_VERSION}-b5740"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
-SHELLCHECK_VERSION="0.6.0"
+SHELLCHECK_VERSION="0.8.0"
 DOCKER_COMPOSE_VERSION="1.29.2"
 
 # inherit $BASE_IMAGE_VERSION
@@ -32,7 +32,7 @@ REPO_URL="https://${REPO_HOST}/${REPO_RELEASE}/common/opennms"
 REPO_KEY_URL="https://${REPO_HOST}/OPENNMS-GPG-KEY"
 
 ADD_RPMS="https://${REPO_HOST}/repofiles/opennms-repo-${REPO_RELEASE}-rhel8.noarch.rpm \
-          https://${REPO_HOST}/${REPO_RELEASE}/rhel7/nsis/mingw32-nsis-2.50-1.el7.centos.x86_64.rpm"
+          https://${REPO_HOST}/${REPO_RELEASE}/rhel8/nsis/mingw32-nsis-2.50-1.el7.centos.x86_64.rpm"
 
 PACKAGES="\
   automake \

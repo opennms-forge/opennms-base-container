@@ -7,8 +7,8 @@ CONTAINER_PROJECT="maven"
 
 # Base Image Dependency
 BASE_IMAGE="opennms/openjdk"
-JDK_VERSION="17_35"
-MAVEN_VERSION="3.6.3"
+JDK_VERSION="17.0.1_12"
+MAVEN_VERSION="3.8.4"
 BASE_IMAGE_VERSION="${JDK_VERSION}-b5706"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
