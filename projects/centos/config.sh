@@ -5,7 +5,7 @@
 # Configure base image dependency
 BASE_IMAGE="centos"
 VERSION="8"
-BASE_IMAGE_VERSION="${VERSION}"
+BASE_IMAGE_VERSION="stream8"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 IMAGE_VERSION=("${VERSION}")
 
