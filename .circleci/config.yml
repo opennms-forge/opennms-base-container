@@ -200,7 +200,7 @@ workflows:
             - shellcheck
       - gobgp:
           requires:
-            - centos
+            - ubuntu
       - openjdk-8:
           requires:
             - centos
