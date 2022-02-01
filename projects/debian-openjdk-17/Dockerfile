@@ -3,10 +3,12 @@ ARG BASE_IMAGE_VERSION="buster"
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
-ARG JDK_MAJOR_VERSION=17.0.1
-ARG JDK_BUILD_VERSION=12
+ARG JDK_MAJOR_VERSION=17.0.2
+ARG JDK_BUILD_VERSION=8
 ARG JDK_VERSION_DETAIL=${JDK_MAJOR_VERSION}_${JDK_BUILD_VERSION}
 ARG JDK_TARBALL=https://github.com/adoptium/temurin17-binaries/releases/download/jdk-${JDK_MAJOR_VERSION}%2B${JDK_BUILD_VERSION}/OpenJDK17U-jdk_x64_linux_hotspot_${JDK_MAJOR_VERSION}_${JDK_BUILD_VERSION}.tar.gz
+
+ENV JAVA_HOME /usr/lib/jvm/jdk-17
 
 RUN apt-get update && \
     apt-get -y --no-install-recommends install apt-transport-https ca-certificates gnupg2 wget && \
@@ -14,6 +16,7 @@ RUN apt-get update && \
     wget -v -O /tmp/jdk.tar.gz \
     "${JDK_TARBALL}" && \
     tar -C /usr/lib/jvm -xvzf /tmp/jdk.tar.gz && \
+    mv "${JAVA_HOME}"* "${JAVA_HOME}" && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -38,5 +41,3 @@ LABEL org.opencontainers.image.created="${BUILD_DATE}" \
       org.opennms.cicd.buildnumber="${BUILD_NUMBER}" \
       org.opennms.cicd.buildurl="${BUILD_URL}" \
       org.opennms.cicd.branch="${BUILD_BRANCH}"
-
-ENV JAVA_HOME /usr/lib/jvm/jdk-17

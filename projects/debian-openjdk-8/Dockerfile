@@ -3,12 +3,20 @@ ARG BASE_IMAGE_VERSION="buster"
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
+ARG JDK_MAJOR_VERSION=8u322
+ARG JDK_BUILD_VERSION=06
+ARG JDK_VERSION_DETAIL=${JDK_MAJOR_VERSION}b${JDK_BUILD_VERSION}
+ARG JDK_TARBALL=https://github.com/adoptium/temurin8-binaries/releases/download/jdk${JDK_MAJOR_VERSION}-b${JDK_BUILD_VERSION}/OpenJDK8U-jdk_x64_linux_hotspot_${JDK_MAJOR_VERSION}b${JDK_BUILD_VERSION}.tar.gz
+
+ENV JAVA_HOME /usr/lib/jvm/jdk-8
+
 RUN apt-get update && \
     apt-get -y --no-install-recommends install apt-transport-https ca-certificates gnupg2 wget && \
-    wget -O - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add - && \
-    echo "deb https://adoptopenjdk.jfrog.io/adoptopenjdk/deb buster main" | tee /etc/apt/sources.list.d/adoptopenjdk.list && \
-    apt-get update && \
-    apt-get -y --no-install-recommends install adoptopenjdk-8-hotspot && \
+    mkdir -p /usr/lib/jvm && \
+    wget -v -O /tmp/jdk.tar.gz \
+    "${JDK_TARBALL}" && \
+    tar -C /usr/lib/jvm -xvzf /tmp/jdk.tar.gz && \
+    mv "/usr/lib/jvm/jdk${JDK_MAJOR_VERSION}"* "${JAVA_HOME}" && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -33,5 +41,3 @@ LABEL org.opencontainers.image.created="${BUILD_DATE}" \
       org.opennms.cicd.buildnumber="${BUILD_NUMBER}" \
       org.opennms.cicd.buildurl="${BUILD_URL}" \
       org.opennms.cicd.branch="${BUILD_BRANCH}"
-
-ENV JAVA_HOME /usr/lib/jvm/adoptopenjdk-8-hotspot-amd64

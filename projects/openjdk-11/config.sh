@@ -7,15 +7,16 @@ CONTAINER_PROJECT="openjdk"
 
 # Base Image Dependency
 BASE_IMAGE="opennms/centos"
-BASE_IMAGE_VERSION="8-b7625"
+BASE_IMAGE_VERSION="8-b7913"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
 # inherit $BASE_IMAGE_VERSION
 PARENT_PROJECT="centos"
 
 # Specific container config
-JDK_MAJOR_VERSION="11"
-JDK_VERSION_DETAIL="${JDK_MAJOR_VERSION}.0.13.0.8"
+JDK_MAJOR_VERSION=11.0.14
+JDK_BUILD_VERSION=9
+JDK_VERSION_DETAIL=${JDK_MAJOR_VERSION}_${JDK_BUILD_VERSION}
 IMAGE_VERSION=("${JDK_VERSION_DETAIL}")
 
 # Most specific tag when it is not build locally and in CircleCI
