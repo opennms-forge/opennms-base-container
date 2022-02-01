@@ -4,7 +4,7 @@
 
 # Base Image Dependency
 BASE_IMAGE="opennms/ubuntu"
-BASE_IMAGE_VERSION="focal-20211006-b7334"
+BASE_IMAGE_VERSION="focal-20211006-b8066"
 
 # inherit $BASE_IMAGE_VERSION
 PARENT_PROJECT="ubuntu"
