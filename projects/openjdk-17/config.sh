@@ -14,9 +14,10 @@ BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 PARENT_PROJECT="centos"
 
 # Specific container config
-JDK_MAJOR_VERSION="17.0.2"
-JDK_BUILD_VERSION="8"
-JDK_VERSION_DETAIL="${JDK_MAJOR_VERSION}_${JDK_BUILD_VERSION}"
+JDK_MAJOR_VERSION=17
+JDK_RELEASE_VERSION=17.0.1.0.0.12
+JDK_VERSION_DETAIL=${JDK_RELEASE_VERSION}
+
 IMAGE_VERSION=("${JDK_VERSION_DETAIL}")
 
 # Most specific tag when it is not build locally and in CircleCI
