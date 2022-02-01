@@ -7,9 +7,9 @@ CONTAINER_PROJECT="build-env"
 
 # Base Image Dependency
 BASE_IMAGE="opennms/openjdk"
-BASE_IMAGE_VERSION="debian-jdk8-8u322b06-b7955"
+BASE_IMAGE_VERSION="debian-jdk8-b7994"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
-SHELLCHECK_VERSION="0.6.0"
+SHELLCHECK_VERSION="0.8.0"
 DOCKER_COMPOSE_VERSION="1.29.2"
 
 # inherit $BASE_IMAGE_VERSION
