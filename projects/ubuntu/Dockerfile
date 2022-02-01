@@ -19,7 +19,7 @@ ARG BUILD_URL
 ARG BUILD_BRANCH
 
 LABEL org.opencontainers.image.created="${BUILD_DATE}" \
-      org.opencontainers.image.title="CentOS ${VERSION}" \
+      org.opencontainers.image.title="Ubuntu ${VERSION}" \
       org.opencontainers.image.source="${SOURCE}" \
       org.opencontainers.image.revision="${REVISION}" \
       org.opencontainers.image.version="${VERSION}" \
