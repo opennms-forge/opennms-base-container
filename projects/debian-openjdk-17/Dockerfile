@@ -4,20 +4,27 @@ ARG BASE_IMAGE_VERSION="buster"
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
 ARG JDK_MAJOR_VERSION=17
-ARG JDK_RELEASE_VERSION=17.0.1.0.0
-ARG JDK_BUILD_VERSION=12
+ARG JDK_RELEASE_VERSION=17.0.2
+ARG JDK_BUILD_VERSION=8_oracle
 ARG JDK_VERSION_DETAIL=${JDK_RELEASE_VERSION}_${JDK_BUILD_VERSION}
 
-ENV JAVA_HOME /usr/lib/jvm/temurin-${JDK_MAJOR_VERSION}-jdk-amd64
+ENV JAVA_HOME /usr/lib/jvm/jdk-${JDK_MAJOR_VERSION}
 
 RUN apt-get update && \
     apt-get -y --no-install-recommends install apt-transport-https ca-certificates gnupg2 wget && \
-    wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | apt-key add - && \
-    echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" > /etc/apt/sources.list.d/adoptium.list && \
-    apt-get update && \
-    apt-get -y --no-install-recommends install temurin-${JDK_MAJOR_VERSION}-jdk && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+RUN set -eux; \
+    wget -O /tmp/jdk.deb https://download.oracle.com/java/17/archive/jdk-${JDK_RELEASE_VERSION}_linux-x64_bin.deb; \
+    JAVA_SHA256="$(wget --quiet -O - https://download.oracle.com/java/17/archive/jdk-${JDK_RELEASE_VERSION}_linux-x64_bin.deb.sha256)"; \
+    (echo "$JAVA_SHA256 */tmp/jdk.deb" | sha256sum -c); \
+    apt-get update; \
+    apt-get -y --no-install-recommends install $(dpkg -I /tmp/jdk.deb | grep Depends: | cut -d: -f2- | sed -e 's/,/ /g'); \
+    apt-get clean; \
+    rm -rf /var/lib/apt/lists/*; \
+    dpkg -i /tmp/jdk.deb; \
+    rm -f /tmp/jdk.deb
 
 ARG BUILD_DATE="1970-01-01T00:00:00+0000"
 ARG SOURCE

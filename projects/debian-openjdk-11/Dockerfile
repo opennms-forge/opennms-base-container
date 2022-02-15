@@ -4,20 +4,17 @@ ARG BASE_IMAGE_VERSION="buster"
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
 ARG JDK_MAJOR_VERSION=11
-ARG JDK_RELEASE_VERSION=11.0.13.0.0
-ARG JDK_BUILD_VERSION=8
+ARG JDK_RELEASE_VERSION=11.0.14
+ARG JDK_BUILD_VERSION=9
 ARG JDK_VERSION_DETAIL=${JDK_RELEASE_VERSION}_${JDK_BUILD_VERSION}
-
-ENV JAVA_HOME /usr/lib/jvm/temurin-${JDK_MAJOR_VERSION}-jdk-amd64
 
 RUN apt-get update && \
     apt-get -y --no-install-recommends install apt-transport-https ca-certificates gnupg2 wget && \
-    wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | apt-key add - && \
-    echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" > /etc/apt/sources.list.d/adoptium.list && \
-    apt-get update && \
-    apt-get -y --no-install-recommends install temurin-${JDK_MAJOR_VERSION}-jdk && \
+    apt-get -y --no-install-recommends install openjdk-11-jdk && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+ENV JAVA_HOME /usr/lib/jvm/java-${JDK_MAJOR_VERSION}-openjdk-amd64
 
 ARG BUILD_DATE="1970-01-01T00:00:00+0000"
 ARG SOURCE

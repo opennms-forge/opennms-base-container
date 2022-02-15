@@ -6,7 +6,7 @@ FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 ARG JDK_MAJOR_VERSION=1.8.0
 ARG JDK_VERSION_DETAIL=${JDK_MAJOR_VERSION}.322.b06
 
-ENV JAVA_HOME /usr/lib/jvm/java-1.8.0
+ENV JAVA_HOME /usr/lib/jvm/java-${JDK_MAJOR_VERSION}
 
 RUN dnf -y install java-${JDK_MAJOR_VERSION}-openjdk-devel-${JDK_VERSION_DETAIL} && \
     dnf clean all && \

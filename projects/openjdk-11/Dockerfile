@@ -4,13 +4,12 @@ ARG BASE_IMAGE_VERSION="8"
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
 ARG JDK_MAJOR_VERSION=11
-ARG JDK_RELEASE_VERSION=11.0.13.0.0.8
+ARG JDK_RELEASE_VERSION=11.0.14.0.9
 ARG JDK_VERSION_DETAIL=${JDK_RELEASE_VERSION}
 
-ENV JAVA_HOME /usr/lib/jvm/temurin-11-jdk
+ENV JAVA_HOME /usr/lib/jvm/java-${JDK_MAJOR_VERSION}
 
-COPY adoptium.repo /etc/yum.repos.d/
-RUN dnf -y install temurin-${JDK_MAJOR_VERSION}-jdk-${JDK_RELEASE_VERSION} && \
+RUN dnf -y install java-${JDK_MAJOR_VERSION}-openjdk-devel-${JDK_VERSION_DETAIL} && \
     dnf clean all && \
     rm -rf /var/cache/yum
 
