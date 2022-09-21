@@ -153,6 +153,18 @@ jobs:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/debian-build-env-jdk17
 
+  circleci-ubuntu-build-env-jdk8:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/circleci-ubuntu-build-env-jdk8
+
+  circleci-ubuntu-build-env-jdk11:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/circleci-ubuntu-build-env-jdk11
+
+  circleci-ubuntu-build-env-jdk17:
+    <<: *common_environment
+    working_directory: ~/opennms-container/projects/circleci-ubuntu-build-env-jdk17
+
   snapcraft:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/snapcraft
@@ -255,6 +267,15 @@ workflows:
       - debian-build-env-jdk17:
           requires:
             - debian-openjdk-17
+      - circleci-ubuntu-build-env-jdk8:
+          requires:
+            - shellcheck
+      - circleci-ubuntu-build-env-jdk11:
+          requires:
+            - shellcheck
+      - circleci-ubuntu-build-env-jdk17:
+          requires:
+            - shellcheck
       - snapcraft:
           requires:
             - shellcheck
