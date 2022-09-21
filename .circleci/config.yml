@@ -4,7 +4,7 @@ defaults: &defaults
 
 aliases:
   - &docker_environment
-    - image: docker:20-git
+    - image: cimg/base:stable
   - &checkout
     path: ~/opennms-container
   - &build_container
@@ -15,9 +15,7 @@ aliases:
     command: docker login -u ${CONTAINER_REGISTRY_LOGIN} -p ${CONTAINER_REGISTRY_PASS}
   - &common_steps
     - checkout: *checkout
-    - setup_remote_docker:
-        version: 20.10.11
-    - run: apk add --no-cache bash
+    - setup_remote_docker
     - run: *registry_login
     - attach_workspace:
         at: ~/
@@ -31,12 +29,14 @@ aliases:
         path: images/image.oci
   - &common_environment
     docker: *docker_environment
+    resource_class: small
     steps: *common_steps
 
 jobs:
   shellcheck:
     docker:
-      - image: koalaman/shellcheck-alpine:v0.7.1
+      - image: koalaman/shellcheck-alpine:latest
+    resource_class: small
     steps:
       - checkout
       - run:
