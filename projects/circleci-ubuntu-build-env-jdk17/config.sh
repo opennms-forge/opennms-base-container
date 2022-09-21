@@ -69,4 +69,5 @@ PACKAGES="\
   sudo \
   thin-provisioning-tools \
   tzdata \
+  xsltproc \
 "

@@ -57,6 +57,7 @@ ARG PACKAGES="\
   sudo \
   thin-provisioning-tools \
   tzdata \
+  xsltproc \
 "
 
 COPY ./debs /tmp/debs
