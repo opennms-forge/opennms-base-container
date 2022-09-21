@@ -9,7 +9,7 @@ source ../registry-config.sh
 
 if [ "${CIRCLE_BRANCH}" == "master" ]; then
   echo "Publish images for master branch ..."
-  for TAG in ${CONTAINER_VERSION_TAGS[*]}; do
+  for TAG in "${CONTAINER_VERSION_TAGS[@]}"; do
     docker push "${CONTAINER_REGISTRY}/${CONTAINER_REGISTRY_REPO}/${CONTAINER_PROJECT}:${TAG}"
   done
 else
