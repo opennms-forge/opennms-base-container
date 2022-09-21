@@ -1,4 +1,4 @@
-version: 2.0
+version: 2.1
 
 defaults: &defaults
 
@@ -8,29 +8,48 @@ aliases:
   - &checkout
     path: ~/opennms-container
   - &build_container
-    name: Building Container Image
+    name: Building Container Image and Push
     command: ~/opennms-container/.circleci/build.sh
   - &registry_login
     name: Login Container Registry
     command: docker login -u ${CONTAINER_REGISTRY_LOGIN} -p ${CONTAINER_REGISTRY_PASS}
-  - &common_steps
-    - checkout: *checkout
-    - setup_remote_docker
-    - run: *registry_login
-    - attach_workspace:
-        at: ~/
-    - run: *build_container
-    - persist_to_workspace:
-        root: ~/
-        paths:
-          - opennms-container/.circleci/build-numbers
-          - opennms-container/projects
-    - store_artifacts:
-        path: images/image.oci
   - &common_environment
     docker: *docker_environment
     resource_class: small
-    steps: *common_steps
+  - &build
+    <<: *common_environment
+    steps:
+      - build:
+          persist: false
+  - &build_persist
+    <<: *common_environment
+    steps:
+      - build:
+          persist: true
+
+commands:
+  build:
+    parameters:
+      persist:
+        type: boolean
+        default: false
+    steps:
+      - checkout: *checkout
+      - setup_remote_docker
+      - run: *registry_login
+      - attach_workspace:
+          at: ~/
+      - run: *build_container
+      - when:
+          condition: << parameters.persist >>
+          steps:
+            - persist_to_workspace:
+                root: ~/
+                paths:
+                  - opennms-container/.circleci/build-numbers
+                  - opennms-container/projects
+      - store_artifacts:
+          path: images/image.oci
 
 jobs:
   shellcheck:
@@ -46,139 +65,139 @@ jobs:
             find . -type f -name '*.sh' | xargs shellcheck --external-sources -e SC2129,SC2001,SC2013
 
   centos:
-    <<: *common_environment
+    <<: *build_persist
     working_directory: ~/opennms-container/projects/centos
   
   ubuntu:
-    <<: *common_environment
+    <<: *build_persist
     working_directory: ~/opennms-container/projects/ubuntu
 
   antora:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/antora
 
   confd:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/confd
 
   net-snmp:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/net-snmp
   
   isc-dhcp:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/isc-dhcp
 
   mini-mail:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/mini-mail
 
   gobgp:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/gobgp
 
   openjdk-8:
-    <<: *common_environment
+    <<: *build_persist
     working_directory: ~/opennms-container/projects/openjdk-8
 
   openjdk-11:
-    <<: *common_environment
+    <<: *build_persist
     working_directory: ~/opennms-container/projects/openjdk-11
 
   openjdk-17:
-    <<: *common_environment
+    <<: *build_persist
     working_directory: ~/opennms-container/projects/openjdk-17
 
   maven-jdk8:
-    <<: *common_environment
+    <<: *build_persist
     working_directory: ~/opennms-container/projects/maven-jdk8
 
   maven-jdk11:
-    <<: *common_environment
+    <<: *build_persist
     working_directory: ~/opennms-container/projects/maven-jdk11
 
   maven-jdk17:
-    <<: *common_environment
+    <<: *build_persist
     working_directory: ~/opennms-container/projects/maven-jdk17
 
   ghr:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/ghr
 
   gulp:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/gulp
 
   build-env-jdk8:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/build-env-jdk8
 
   build-env-jdk11:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/build-env-jdk11
 
   build-env-jdk17:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/build-env-jdk17
 
   tomcat:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/tomcat
 
   debian:
-    <<: *common_environment
+    <<: *build_persist
     working_directory: ~/opennms-container/projects/debian
 
   debian-openjdk-8:
-    <<: *common_environment
+    <<: *build_persist
     working_directory: ~/opennms-container/projects/debian-openjdk-8
 
   debian-openjdk-11:
-    <<: *common_environment
+    <<: *build_persist
     working_directory: ~/opennms-container/projects/debian-openjdk-11
 
   debian-openjdk-17:
-    <<: *common_environment
+    <<: *build_persist
     working_directory: ~/opennms-container/projects/debian-openjdk-17
 
   debian-build-env-jdk8:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/debian-build-env-jdk8
 
   debian-build-env-jdk11:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/debian-build-env-jdk11
 
   debian-build-env-jdk17:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/debian-build-env-jdk17
 
   circleci-ubuntu-build-env-jdk8:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/circleci-ubuntu-build-env-jdk8
 
   circleci-ubuntu-build-env-jdk11:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/circleci-ubuntu-build-env-jdk11
 
   circleci-ubuntu-build-env-jdk17:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/circleci-ubuntu-build-env-jdk17
 
   snapcraft:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/snapcraft
 
   yum-repo:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/yum-repo
 
   gns3-horizon:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/gns3-horizon
 
   gns3-minion:
-    <<: *common_environment
+    <<: *build
     working_directory: ~/opennms-container/projects/gns3-minion
 
 workflows:
