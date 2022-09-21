@@ -1,5 +1,5 @@
-ARG BASE_IMAGE="cimg/openjdk"
-ARG BASE_IMAGE_VERSION="17.0-node"
+ARG BASE_IMAGE="cimg/base"
+ARG BASE_IMAGE_VERSION="stable-20.04"
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
@@ -43,6 +43,7 @@ ARG PACKAGES="\
   make \
   nodejs \
   nsis \
+  openjdk-17-jdk-headless \
   po-debconf \
   python \
   python3 \
@@ -60,7 +61,10 @@ ARG PACKAGES="\
 
 COPY ./debs /tmp/debs
 
-RUN sudo /usr/local/bin/ghost-apt-install.sh ${PACKAGES}
+RUN curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh && \
+    sudo bash /tmp/nodesource_setup.sh && \
+    rm -f /tmp/nodesource_setup.sh && \
+    sudo /usr/local/bin/ghost-apt-install.sh ${PACKAGES}
 
 RUN sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
     sudo chmod +x /usr/local/bin/docker-compose

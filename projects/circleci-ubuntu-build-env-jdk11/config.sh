@@ -6,8 +6,8 @@
 CONTAINER_PROJECT="build-env"
 
 # Base Image Dependency
-BASE_IMAGE="cimg/openjdk"
-BASE_IMAGE_VERSION="11.0.16-node"
+BASE_IMAGE="cimg/base"
+BASE_IMAGE_VERSION="stable-20.04"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 SHELLCHECK_VERSION="0.8.0"
 DOCKER_COMPOSE_VERSION="2.11.1"
@@ -55,6 +55,7 @@ PACKAGES="\
   make \
   nodejs \
   nsis \
+  openjdk-11-jdk-headless \
   po-debconf \
   python \
   python3 \
