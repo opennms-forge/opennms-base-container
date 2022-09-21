@@ -33,9 +33,13 @@ ARG PACKAGES="\
   expect \
   git \
   gnupg2 \
+  libdatetime-format-iso8601-perl \
+  libjson-pp-perl \
+  liblwp-protocol-https-perl \
   librpm-dev \
   librrd-dev \
   libtool \
+  libwww-perl \
   make \
   nodejs \
   nsis \
