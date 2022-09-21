@@ -23,6 +23,7 @@ ARG PACKAGES="\
   ca-certificates \
   cmake \
   curl \
+  debconf-utils \
   debhelper \
   debsigs \
   devscripts \
@@ -46,9 +47,11 @@ ARG PACKAGES="\
   rpmlint \
   rsync \
   shellcheck \
+  software-properties-common \
   ssh \
   sudo \
   thin-provisioning-tools \
+  tzdata \
 "
 
 COPY ./debs /tmp/debs
@@ -57,6 +60,12 @@ RUN sudo /usr/local/bin/ghost-apt-install.sh ${PACKAGES}
 
 RUN sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
     sudo chmod +x /usr/local/bin/docker-compose
+
+# install R
+RUN curl -sSf https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc && \
+    sudo add-apt-repository -y "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/" && \
+    echo '* libraries/restart-without-asking boolean true' | sudo debconf-set-selections && \
+    sudo /usr/local/bin/ghost-apt-install.sh r-base
 
 RUN if [ "$(ls -1 /tmp/debs/*.deb 2>/dev/null | wc -l)" != 0 ]; then dpkg -i /tmp/debs/*.deb; fi && \
     sudo rm -rf /tmp/debs
