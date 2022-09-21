@@ -2,6 +2,7 @@
 .project
 .DS_Store
 .*.sw?
+.docker_temp_*
 *.iml
 *.oci
 .circleci/build-numbers
