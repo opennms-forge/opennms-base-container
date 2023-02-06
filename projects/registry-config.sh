@@ -48,6 +48,15 @@ else
       BASE_IMAGE="${_name}"
       BASE_IMAGE_VERSION="${_version}"
     fi
+  else
+    # if we can't (because a parent project hasn't changed), pull opennms/* images from dockerhub anyway
+    case "${BASE_IMAGE}" in
+      opennms/horizon|opennms/sentinel|opennms/minion)
+        ;;
+      opennms/*)
+        BASE_IMAGE="opennms/build-env"
+        ;;
+    esac
   fi
 fi
 
