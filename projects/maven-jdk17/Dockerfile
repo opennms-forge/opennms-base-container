@@ -3,9 +3,9 @@ ARG BASE_IMAGE_VERSION="17.0.3.0.7"
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
-ARG MAVEN_VERSION="3.8.6"
+ARG MAVEN_VERSION="3.8.7"
 
-ARG MAVEN_HOST="https://www-eu.apache.org"
+ARG MAVEN_HOST="https://archive.apache.org"
 ARG MAVEN_URL="${MAVEN_HOST}/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz"
 ARG MAVEN_HOME="/opt/apache-maven-${MAVEN_VERSION}"
 

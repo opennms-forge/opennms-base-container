@@ -8,7 +8,7 @@ CONTAINER_PROJECT="maven"
 # Base Image Dependency
 BASE_IMAGE="opennms/openjdk"
 JDK_VERSION="17.0.3.0.7"
-MAVEN_VERSION="3.8.6"
+MAVEN_VERSION="3.8.7"
 BASE_IMAGE_VERSION="${JDK_VERSION}-b8083"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 
@@ -19,7 +19,7 @@ PARENT_PROJECT="openjdk-17"
 VERSION="${JDK_VERSION}-${MAVEN_VERSION}"
 IMAGE_VERSION=("${VERSION}")
 
-MAVEN_HOST="https://mirror.informatik.hs-fulda.de"
+MAVEN_HOST="https://archive.apache.org"
 MAVEN_URL="${MAVEN_HOST}/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz"
 MAVEN_HOME="/opt/apache-maven-${MAVEN_VERSION}"
 
