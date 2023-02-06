@@ -7,10 +7,10 @@ CONTAINER_PROJECT="build-env"
 
 # Base Image Dependency
 BASE_IMAGE="cimg/base"
-BASE_IMAGE_VERSION="stable-20.04"
+BASE_IMAGE_VERSION="current-22.04"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 SHELLCHECK_VERSION="0.8.0"
-DOCKER_COMPOSE_VERSION="2.11.1"
+DOCKER_COMPOSE_VERSION="2.15.1"
 
 # inherit $BASE_IMAGE_VERSION
 PARENT_PROJECT="debian-openjdk-17"
@@ -39,7 +39,6 @@ PACKAGES="\
   debhelper \
   debsigs \
   devscripts \
-  dh-systemd \
   docker-ce \
   dpkg-sig \
   expect \
@@ -57,7 +56,7 @@ PACKAGES="\
   nsis \
   openjdk-17-jdk-headless \
   po-debconf \
-  python \
+  python2 \
   python3 \
   rpm \
   rpm2cpio \

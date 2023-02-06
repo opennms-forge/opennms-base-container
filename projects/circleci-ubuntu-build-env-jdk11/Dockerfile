@@ -1,5 +1,5 @@
 ARG BASE_IMAGE="cimg/base"
-ARG BASE_IMAGE_VERSION="stable-20.04"
+ARG BASE_IMAGE_VERSION="current-22.04"
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
@@ -10,10 +10,10 @@ COPY tools/*.sh /usr/local/bin/
 ARG REPO_HOST="debian.opennms.org"
 ARG REPO_RELEASE="stable"
 ARG REPO_KEY_URL="https://${REPO_HOST}/OPENNMS-GPG-KEY"
-ARG DOCKER_COMPOSE_VERSION="2.11.1"
+ARG DOCKER_COMPOSE_VERSION="2.15.1"
 
 RUN sudo /usr/local/bin/ghost-apt-install.sh gnupg ca-certificates && \
-    wget -qO- ${REPO_KEY_URL} | sudo apt-key add - && \
+    wget -qO- "${REPO_KEY_URL}" | sudo tee /etc/apt/trusted.gpg.d/opennms.asc && \
     echo "deb https://${REPO_HOST} ${REPO_RELEASE} main" | sudo tee /etc/apt/sources.list.d/opennms.list
 
 ARG PACKAGES="\
@@ -27,7 +27,6 @@ ARG PACKAGES="\
   debhelper \
   debsigs \
   devscripts \
-  dh-systemd \
   docker-ce \
   dpkg-sig \
   expect \
@@ -45,7 +44,7 @@ ARG PACKAGES="\
   nsis \
   openjdk-11-jdk-headless \
   po-debconf \
-  python \
+  python2 \
   python3 \
   rpm \
   rpm2cpio \
