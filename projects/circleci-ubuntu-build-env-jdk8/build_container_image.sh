@@ -24,7 +24,7 @@ docker build -t "${CONTAINER_PROJECT}:${IMAGE_VERSION[0]}" \
   --build-arg SHELLCHECK_VERSION="${SHELLCHECK_VERSION}" \
   --build-arg DOCKER_COMPOSE_VERSION="${DOCKER_COMPOSE_VERSION}" \
   --build-arg PACKAGES="${PACKAGES}" \
-  --build-arg REPO_RELEASE="bleeding" \
+  --build-arg REPO_RELEASE="stable" \
   --build-arg REPO_HOST="${REPO_HOST}" \
   --build-arg REPO_KEY_URL="${REPO_KEY_URL}" \
   .
