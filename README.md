@@ -28,7 +28,7 @@ cd projects/horizon
 
 The credentials to push to a remote container registry are provided
 
-a) Environment variable `CONTAINER_REGISTRY_LOGIN` and `CONTAINER_REGISTRY_PASS`
+a) Environment variable `DOCKERHUB_LOGIN` and `DOCKERHUB_PASS`
 b) If not set the local registry configuration is used and tested with `docker login`
 
 By default the `docker.io` and `opennms` as a repository is set.

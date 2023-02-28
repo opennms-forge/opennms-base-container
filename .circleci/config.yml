@@ -12,7 +12,7 @@ aliases:
     command: ~/opennms-container/.circleci/build.sh
   - &registry_login
     name: Login Container Registry
-    command: docker login -u ${CONTAINER_REGISTRY_LOGIN} -p ${CONTAINER_REGISTRY_PASS}
+    command: docker login -u "${DOCKERHUB_LOGIN}" -p "${DOCKERHUB_PASS}"
   - &common_environment
     docker: *docker_environment
     resource_class: small
@@ -216,115 +216,191 @@ workflows:
   version: 2
   container_build:
     jobs:
-      - shellcheck
+      - shellcheck:
+          context:
+            - "docker-publish-account"
       - tomcat:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - centos:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - ubuntu:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - antora:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - confd:
+          context:
+            - "docker-publish-account"
           requires:
             - centos
       - net-snmp:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - isc-dhcp:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - mini-mail:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - gobgp:
+          context:
+            - "docker-publish-account"
           requires:
             - ubuntu
       - openjdk-8:
+          context:
+            - "docker-publish-account"
           requires:
             - centos
       - openjdk-11:
+          context:
+            - "docker-publish-account"
           requires:
             - centos
       - openjdk-17:
+          context:
+            - "docker-publish-account"
           requires:
             - centos
       - maven-jdk8:
+          context:
+            - "docker-publish-account"
           requires:
             - openjdk-8
       - maven-jdk11:
+          context:
+            - "docker-publish-account"
           requires:
             - openjdk-11
       - maven-jdk17:
+          context:
+            - "docker-publish-account"
           requires:
             - openjdk-17
       - ghr:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - gulp:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - build-env-jdk8:
+          context:
+            - "docker-publish-account"
           requires:
             - maven-jdk8
       - build-env-jdk11:
+          context:
+            - "docker-publish-account"
           requires:
             - maven-jdk11
       - build-env-jdk17:
+          context:
+            - "docker-publish-account"
           requires:
             - maven-jdk17
       - debian:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - debian-openjdk-8:
+          context:
+            - "docker-publish-account"
           requires:
             - debian
       - debian-openjdk-11:
+          context:
+            - "docker-publish-account"
           requires:
             - debian
       - debian-openjdk-17:
+          context:
+            - "docker-publish-account"
           requires:
             - debian
       - debian-build-env-jdk8:
+          context:
+            - "docker-publish-account"
           requires:
             - debian-openjdk-8
       - debian-build-env-jdk11:
+          context:
+            - "docker-publish-account"
           requires:
             - debian-openjdk-11
       - debian-build-env-jdk17:
+          context:
+            - "docker-publish-account"
           requires:
             - debian-openjdk-17
       - circleci-ubuntu-build-env-jdk8:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - circleci-ubuntu-build-env-jdk11:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - circleci-ubuntu-build-env-jdk17:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - circleci-python-openjdk-8:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - circleci-python-openjdk-11:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - circleci-python-openjdk-17:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - snapcraft:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - yum-repo:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - gns3-horizon:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
       - gns3-minion:
+          context:
+            - "docker-publish-account"
           requires:
             - shellcheck
