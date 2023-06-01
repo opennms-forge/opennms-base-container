@@ -18,5 +18,5 @@ LABEL maintainer="The OpenNMS Group" \
       version="${VERSION}" \
       build.date="${BUILD_DATE}" \
       vendor="OpenNMS Community" \
-      org.opennms.container.image.os.name="Debian Stretch" \
+      org.opennms.container.image.os.name="Debian Buster" \
       org.opennms.container.image.os.build-date="${BUILD_DATE}"

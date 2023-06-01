@@ -10,7 +10,7 @@ ARG JDK_VERSION_DETAIL=${JDK_RELEASE_VERSION}_${JDK_BUILD_VERSION}
 
 RUN apt-get update && \
     apt-get -y --no-install-recommends install apt-transport-https ca-certificates gnupg2 software-properties-common wget && \
-    apt-add-repository 'deb http://security.debian.org/debian-security stretch/updates main' && \
+    apt-add-repository "deb http://security.debian.org/debian-security ${BASE_IMAGE_VERSION}/updates main" && \
     apt-get update && \
     apt-get -y --no-install-recommends install openjdk-8-jdk && \
     apt-get clean && \

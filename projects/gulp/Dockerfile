@@ -1,5 +1,5 @@
 ARG BASE_IMAGE="node"
-ARG BASE_IMAGE_VERSION="11-stretch"
+ARG BASE_IMAGE_VERSION="16-buster"
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
@@ -17,5 +17,5 @@ LABEL maintainer="The OpenNMS Group" \
       version="${VERSION}" \
       build.date="${BUILD_DATE}" \
       vendor="OpenNMS Community" \
-      org.opennms.container.image.os.name="Debian Stretch" \
+      org.opennms.container.image.os.name="Debian Buster" \
       org.opennms.container.image.os.build-date="${BUILD_DATE}"
