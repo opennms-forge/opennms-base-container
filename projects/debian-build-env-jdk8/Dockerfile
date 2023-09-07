@@ -32,6 +32,7 @@ ARG PACKAGES="\
   expect \
   git \
   gnupg2 \
+  jq \
   librrd-dev \
   libtool \
   make \

@@ -28,4 +28,4 @@ REPO_RELEASE="stable"
 REPO_HOST="debian.opennms.org"
 REPO_KEY_URL="https://${REPO_HOST}/OPENNMS-GPG-KEY"
 
-PACKAGES="nodejs autoconf automake build-essential cmake curl debhelper devscripts dh-systemd docker-ce dpkg-sig expect git librrd-dev libtool make nsis po-debconf python python3 rsync shellcheck ssh thin-provisioning-tools"
+PACKAGES="nodejs autoconf automake build-essential cmake curl debhelper devscripts dh-systemd docker-ce dpkg-sig expect git jq librrd-dev libtool make nsis po-debconf python python3 rsync shellcheck ssh thin-provisioning-tools"
