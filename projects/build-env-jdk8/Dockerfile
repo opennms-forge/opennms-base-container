@@ -52,7 +52,7 @@ RUN dnf -y install epel-release dnf-plugins-core && \
     dnf -y install ${ADD_RPMS} && \
     rpm --import "${REPO_KEY_URL}" && \
     dnf config-manager --set-enabled powertools && \
-    dnf -y module install nodejs:16 && \
+    dnf -y module install nodejs:18 && \
     dnf -y install ${PACKAGES} && \
     dnf clean all && \
     rm -rf /var/cache/yum

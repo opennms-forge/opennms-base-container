@@ -61,7 +61,7 @@ ARG PACKAGES="\
 
 COPY ./debs /tmp/debs
 
-RUN curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh && \
+RUN curl -sL https://deb.nodesource.com/setup_18.x -o /tmp/nodesource_setup.sh && \
     sudo bash /tmp/nodesource_setup.sh && \
     rm -f /tmp/nodesource_setup.sh && \
     sudo /usr/local/bin/ghost-apt-install.sh ${PACKAGES}
