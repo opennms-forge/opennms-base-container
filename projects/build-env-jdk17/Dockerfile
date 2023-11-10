@@ -1,5 +1,5 @@
 ARG BASE_IMAGE="opennms/maven"
-ARG BASE_IMAGE_VERSION="17.0.3.0.7_3.8.6"
+ARG BASE_IMAGE_VERSION="17.0.6.0.10_3.8.8"
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
@@ -28,7 +28,6 @@ ARG PACKAGES="\
 	make \
 	nodejs \
 	openssh-clients \
-	python2 \
 	python3 \
 	R-core \
 	redhat-rpm-config \
@@ -52,7 +51,7 @@ SHELL ["/bin/bash", "-c"]
 RUN dnf -y install epel-release dnf-plugins-core && \
     dnf -y install ${ADD_RPMS} && \
     rpm --import "${REPO_KEY_URL}" && \
-    dnf config-manager --set-enabled powertools && \
+    dnf config-manager --set-enabled crb && \
     dnf -y module install nodejs:18 && \
     dnf -y install ${PACKAGES} && \
     dnf clean all && \
@@ -62,7 +61,7 @@ RUN wget -qO- "https://github.com/koalaman/shellcheck/releases/download/v${SHELL
     rm -rf shellcheck-*
 RUN dnf -y install yum-utils device-mapper-persistent-data lvm2 && \
     dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo && \
-    dnf -y install https://download.docker.com/linux/centos/8/x86_64/stable/Packages/containerd.io-1.4.12-3.1.el8.x86_64.rpm && \
+    dnf -y install https://download.docker.com/linux/centos/9/x86_64/stable/Packages/containerd.io-1.6.24-3.1.el9.x86_64.rpm && \
     dnf -y install docker-ce docker-ce-cli && \
     curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose && \
     chmod +x /usr/local/bin/docker-compose && \

@@ -1,9 +1,9 @@
 ARG BASE_IMAGE=opennms/openjdk
-ARG BASE_IMAGE_VERSION="11.0.4.11"
+ARG BASE_IMAGE_VERSION="11.0.18.0.10"
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
-ARG MAVEN_VERSION="3.8.7"
+ARG MAVEN_VERSION="3.8.8"
 
 ARG MAVEN_HOST="https://archive.apache.org"
 ARG MAVEN_URL="${MAVEN_HOST}/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz"

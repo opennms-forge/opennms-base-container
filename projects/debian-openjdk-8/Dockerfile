@@ -1,16 +1,16 @@
 ARG BASE_IMAGE="debian"
-ARG BASE_IMAGE_VERSION="buster"
+ARG BASE_IMAGE_VERSION="bullseye"
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
 ARG JDK_MAJOR_VERSION=8
-ARG JDK_RELEASE_VERSION=8u322
-ARG JDK_BUILD_VERSION=b06
+ARG JDK_RELEASE_VERSION=8u362
+ARG JDK_BUILD_VERSION=b09
 ARG JDK_VERSION_DETAIL=${JDK_RELEASE_VERSION}_${JDK_BUILD_VERSION}
 
+# apt-add-repository "deb http://security.debian.org/debian-security $(lsb_release -cs)/updates main" && \
 RUN apt-get update && \
-    apt-get -y --no-install-recommends install apt-transport-https ca-certificates gnupg2 software-properties-common wget && \
-    apt-add-repository "deb http://security.debian.org/debian-security $(lsb_release -cs)/updates main" && \
+    apt-get -y --no-install-recommends install apt-transport-https ca-certificates ca-certificates-java gnupg2 wget && \
     apt-add-repository "deb http://archive.debian.org/debian-security stretch/updates main" && \
     apt-get update && \
     apt-get -y --no-install-recommends install openjdk-8-jdk && \

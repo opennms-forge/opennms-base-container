@@ -1,5 +1,5 @@
 ARG BASE_IMAGE="debian"
-ARG BASE_IMAGE_VERSION="buster"
+ARG BASE_IMAGE_VERSION="bullseye"
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
@@ -9,7 +9,7 @@ ARG JDK_BUILD_VERSION=9
 ARG JDK_VERSION_DETAIL=${JDK_RELEASE_VERSION}_${JDK_BUILD_VERSION}
 
 RUN apt-get update && \
-    apt-get -y --no-install-recommends install apt-transport-https ca-certificates gnupg2 wget && \
+    apt-get -y --no-install-recommends install apt-transport-https ca-certificates ca-certificates-java gnupg2 wget && \
     apt-get -y --no-install-recommends install openjdk-11-jdk && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*

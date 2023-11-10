@@ -7,7 +7,7 @@ CONTAINER_PROJECT="build-env"
 
 # Base Image Dependency
 BASE_IMAGE="opennms/openjdk"
-BASE_IMAGE_VERSION="debian-jdk8-8u322b06-b8078"
+BASE_IMAGE_VERSION="debian-jdk8-8u362b09-b8078"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 SHELLCHECK_VERSION="0.8.0"
 DOCKER_COMPOSE_VERSION="1.29.2"
@@ -28,4 +28,4 @@ REPO_RELEASE="stable"
 REPO_HOST="debian.opennms.org"
 REPO_KEY_URL="https://${REPO_HOST}/OPENNMS-GPG-KEY"
 
-PACKAGES="nodejs autoconf automake build-essential cmake curl debhelper devscripts dh-systemd docker-ce dpkg-sig expect git jq librrd-dev libtool make nsis po-debconf python python3 rsync shellcheck ssh thin-provisioning-tools"
+PACKAGES="nodejs autoconf automake build-essential cmake curl debhelper devscripts docker-ce dpkg-sig expect git jq librrd-dev libtool make nsis po-debconf python python3 rsync shellcheck ssh thin-provisioning-tools"

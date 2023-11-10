@@ -26,7 +26,6 @@ ARG PACKAGES="\
   debhelper \
   debsigs \
   devscripts \
-  dh-systemd \
   docker-ce \
   dpkg-sig \
   expect \

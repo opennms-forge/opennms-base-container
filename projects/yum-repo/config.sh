@@ -4,7 +4,7 @@
 
 # Base Image Dependency
 BASE_IMAGE="debian"
-BASE_IMAGE_VERSION="buster-slim"
+BASE_IMAGE_VERSION="bullseye-slim"
 
 # Version information
 VERSION="1.0.0"

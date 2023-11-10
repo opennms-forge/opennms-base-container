@@ -1,11 +1,11 @@
 ARG BASE_IMAGE="debian"
-ARG BASE_IMAGE_VERSION="buster-slim"
+ARG BASE_IMAGE_VERSION="bullseye-slim"
 ARG WWW_ROOT="/var/www/rpms"
 
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
-RUN apt-get update && \
-    apt-get -y install createrepo lighttpd && \
+RUN apt-get -y update && \
+    apt-get -y --no-install-recommends install createrepo-c lighttpd && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

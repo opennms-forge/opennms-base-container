@@ -7,8 +7,8 @@ CONTAINER_PROJECT="build-env"
 
 # Base Image Dependency
 BASE_IMAGE="opennms/maven"
-JDK_VERSION="11.0.14_9"
-MAVEN_VERSION="3.8.7"
+JDK_VERSION="11.0.18.0.10"
+MAVEN_VERSION="3.8.8"
 BASE_IMAGE_VERSION="${JDK_VERSION}-${MAVEN_VERSION}-b8087"
 BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 SHELLCHECK_VERSION="0.8.0"
@@ -51,7 +51,6 @@ PACKAGES="\
   make \
   nodejs \
   openssh-clients \
-  python2 \
   python3 \
   R-core \
   redhat-rpm-config \
