@@ -6,7 +6,7 @@ FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 ARG VERSION="latest"
 
 RUN apk --no-cache add bash make git openssh-client && \
-    yarn global add --ignore-optional --silent "https://gitlab.com/antora/xref-validator/-/archive/v1.0.0-alpha.14/xref-validator-v1.0.0-alpha.14.tar.gz" && \
+    yarn global add --ignore-optional --silent "https://gitlab.com/antora/xref-validator/-/archive/main/xref-validator-main.tar.gz" && \
     yarn global add --ignore-optional --silent "https://github.com/opennms-forge/antora-lunr-extension#aebcab8142e0b1f8b44bfc85b189af7d3abe9662"
 
 ARG BUILD_DATE="1970-01-01T00:00:00+0000"
