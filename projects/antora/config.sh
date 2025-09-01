@@ -4,7 +4,7 @@
 
 # Configure base image dependency
 BASE_IMAGE="antora/antora"
-BASE_IMAGE_VERSION="3.1.7"
+BASE_IMAGE_VERSION="3.1.12"
 VERSION=${BASE_IMAGE_VERSION}
 IMAGE_VERSION=("${VERSION}")
 
@@ -14,4 +14,3 @@ BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%S%z")"
 if [ -n "${CIRCLE_BUILD_NUM}" ]; then
   IMAGE_VERSION+=("${VERSION}-b${CIRCLE_BUILD_NUM}")
 fi
-
