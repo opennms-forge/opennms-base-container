@@ -1,6 +1,6 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
 
-set -x
+# set -x
 
 # shellcheck source=projects/confd/config.sh
 source ./config.sh
